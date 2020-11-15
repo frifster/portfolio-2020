@@ -1,0 +1,126 @@
+@accent-color: #69e2d6;
+@main-color: #011627;
+@sub-color: lighten(@main-color, 30);
+@text-color: #fdfffc;
+@alt-text-color: rgb(209, 198, 198);
+
+.headingText {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  background-color: @accent-color;
+  justify-items: center;
+  grid-template-columns: 70px 1fr;
+  gap: 10px;
+  padding: 10vh 15vw;
+  color: @text-color;
+}
+
+.innerBox {
+  width: 100%;
+  background-color: @sub-color;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+.rightContent,
+.mainContent {
+  padding: 20px;
+}
+
+.rightContent {
+  padding-top: 30px;
+  display: grid;
+  grid-template-rows: auto 1fr 40px;
+
+  .profileSection {
+    display: grid;
+    place-items: center;
+    gap: 15px;
+    // text-align: center;
+
+    .profileImg {
+      height: 200px;
+      width: 200px;
+      margin: 0 auto;
+      background-color: @text-color;
+      border-radius: 50%;
+    }
+    .userTitle {
+      color: @alt-text-color;
+    }
+
+    .socialIcons {
+      font-size: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .dowloadBtn {
+    display: grid;
+    place-items: center;
+
+    button {
+      outline: none;
+      background: transparent;
+      color: @text-color;
+      border: 2px solid @text-color;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+
+      &:hover {
+        color: @sub-color;
+        background-color: @text-color;
+      }
+    }
+  }
+
+  .footer {
+    color: @alt-text-color;
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+.mainContent {
+  background-color: @main-color;
+  box-shadow: -3px 1px 3px lighten(@main-color, 10);
+  border-radius: 20px;
+}
+
+.outerControls {
+  width: 100%;
+  display: grid;
+  align-content: space-between;
+}
+
+.mainControl {
+  background-color: @main-color;
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.faIcons {
+  cursor: pointer;
+  font-size: 25px;
+
+  &:hover {
+    color: @accent-color;
+  }
+}
+
+.navControl {
+  background-color: @sub-color;
+}

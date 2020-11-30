@@ -25,7 +25,7 @@ const particleParams = {
       color: {
         value: {
           r: 0,
-          g: 0,
+          g: 200,
           b: 255
         }
       }

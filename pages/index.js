@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.less'
-import { faUser, faHome, faGraduationCap, faBriefcase, faPhoneAlt, faCopyright } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faGraduationCap, faBriefcase, faPhoneAlt, faCopyright } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 import BackgroundParticles from '../components/BackgroundParticle'
-import { CONTACT_VIEW, HOME_VIEW, PROFILE_VIEW, STUDY_VIEW, WORK_VIEW } from '../constants/view'
-import { spring, variants } from '../animations/homeVariants'
+import { CONTACT_VIEW, PROFILE_VIEW, STUDY_VIEW, WORK_VIEW } from '../constants/view'
 import WorkView from '../components/WorkView'
 import AcadView from '../components/AcadView'
+import ProfileView from '../components/ProfileView'
+import ContactView from '../components/ContactView'
 
 export default function Home () {
   const [view, setView] = useState(0)
@@ -79,19 +80,7 @@ export default function Home () {
         <div className={styles.animateDiv}>
           <AnimatePresence initial={false}>
             {
-              view === 0 && (
-                <motion.div
-                  key={PROFILE_VIEW}
-                  transition={spring}
-                  initial='enter'
-                  exit='exit'
-                  animate='center'
-                  variants={variants}
-                  className={styles.mainContent}
-                >
-                  {PROFILE_VIEW}
-                </motion.div>
-              )
+              view === 0 && <ProfileView />
             }
 
             {
@@ -101,19 +90,7 @@ export default function Home () {
               view === 2 && <WorkView />
             }
             {
-              view === 3 && (
-                <motion.div
-                  key={CONTACT_VIEW}
-                  transition={spring}
-                  initial='enter'
-                  exit='exit'
-                  animate='center'
-                  variants={variants}
-                  className={styles.mainContent}
-                >
-                  {CONTACT_VIEW}
-                </motion.div>
-              )
+              view === 3 && <ContactView />
             }
           </AnimatePresence>
         </div>

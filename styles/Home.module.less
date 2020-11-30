@@ -193,6 +193,8 @@
   background-color: @sub-color;
 }
 
+.contactContainer,
+.greetingsContainer,
 .experienceContainer {
   max-height: calc(77vh - (40px + 3.17em));
   overflow-y: auto;
@@ -202,6 +204,7 @@
   }
 }
 
+.contact,
 .experience {
   padding: 20px;
   border-left: 2px dotted @accent-color;
@@ -225,7 +228,7 @@
   }
 
   p, li {
-    font-size: 0.85em;
+    font-size: 12px;
     padding: 5px;
     margin: 0;
   }
@@ -233,6 +236,10 @@
   &:nth-child(even) {
     border-right: 2px dotted @accent-color;
     border-left: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
   }
 }
 

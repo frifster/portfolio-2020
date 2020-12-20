@@ -38,7 +38,7 @@ export const ACADEMICS = {
     attendEnd: 'January 31, 2019',
     course: 'Automated Software QA Testing',
     location: 'Mandaluyong City, NCR',
-    id: 3
+    id: 4
   },
   study6: {
     school: 'Phillipine Software Industry Association',
@@ -46,6 +46,6 @@ export const ACADEMICS = {
     attendEnd: 'May 21, 2020',
     course: 'Code Quality Workshop',
     location: 'Remote Session via Google Meet',
-    id: 4
+    id: 5
   }
 }

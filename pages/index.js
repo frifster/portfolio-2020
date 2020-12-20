@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Head from 'next/head'
 import styles from '../styles/Home.module.less'
 import { faUser, faGraduationCap, faBriefcase, faPhoneAlt, faCopyright } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -22,6 +23,13 @@ export default function Home () {
     CONTACT_VIEW
   ]
 
+  const title = {
+    [PROFILE_VIEW]: "Eugene's Portfolio",
+    [STUDY_VIEW]: 'Academics',
+    [WORK_VIEW]: 'Work Experiences',
+    [CONTACT_VIEW]: 'Reach me'
+  }[VIEWS[view]]
+
   const FontIcon = ({ icon, currentView }) => {
     return <FontAwesomeIcon icon={icon} className={currentView === view ? styles.faIconsActive : styles.faIcons} onClick={() => setView(currentView)} />
   }
@@ -44,8 +52,15 @@ export default function Home () {
     }
   }, [view])
 
+  console.log({ title, view })
+
   return (
+
     <div className={styles.container} onKeyPress={e => console.log('EEE', e)}>
+      <Head>
+        <title>{title}</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
       <BackgroundParticles />
       <div className={styles.outerControls}>
         <div className={styles.mainControl}>

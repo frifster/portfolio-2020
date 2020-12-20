@@ -52,8 +52,6 @@ export default function Home () {
     }
   }, [view])
 
-  console.log({ title, view })
-
   return (
 
     <div className={styles.container} onKeyPress={e => console.log('EEE', e)}>

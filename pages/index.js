@@ -84,7 +84,7 @@ export default function Home () {
             </div>
           </div>
           <div className={styles.dowloadBtn}>
-            <button title='CV not available yet. Sorry for the inconvenience'>Download CV</button>
+            <button><a href='./AvilaResume.pdf' download>Download CV</a></button>
           </div>
           <footer className={styles.footer}>
             <FontAwesomeIcon icon={faCopyright} /> 2020 All rights reserved.

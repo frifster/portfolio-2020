@@ -1,53 +1,45 @@
-import styles from '../styles/Home.module.less'
-import Particles from 'react-particles-js'
+import styles from "../styles/Home.module.less";
+import Particles from "react-particles-js";
 
-const particleParams = {
+const params = {
   particles: {
     number: {
-      value: 50
+      value: 30,
     },
     size: {
-      value: 5,
+      value: 10,
       random: true,
       anim: {
-        speed: 4,
-        size_min: 1
-      }
+        speed: 10,
+        size_min: 1,
+      },
     },
     color: {
-      value: {
-        r: 55,
-        g: 50,
-        b: 255
-      }
-    },
-    line_linked: {
-      color: {
-        value: {
-          r: 0,
-          g: 200,
-          b: 255
-        }
-      }
+      value: "#8efcdd",
     },
     rotate: {
       value: 20,
       animation: {
         enable: true,
-        speed: 2000
-      }
-    }
+        speed: 2000,
+      },
+    },
+    move: {
+      out_mode: "out",
+    },
+    line_linked: {
+      enable: false,
+    },
   },
   interactivity: {
-    events: {
-      onhover: {
-        enable: true,
-        mode: 'repulse'
-      }
-    }
-  }
-}
+    modes: {
+      remove: {
+        particles_nb: 10,
+      },
+    },
+  },
+};
 
-export default function BackgroundParticles () {
-  return <Particles className={styles.particles} params={particleParams} />
+export default function BackgroundParticles() {
+  return <Particles className={styles.particles} params={params} />;
 }

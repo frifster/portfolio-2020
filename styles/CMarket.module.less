@@ -1,0 +1,73 @@
+@import (css)
+  url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "./color.less";
+@import "./media.less";
+
+.headingText {
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.headers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3fr;
+    margin-bottom: 2vh;
+}
+
+.container {
+    font-family: "Montserrat", sans-serif;
+    min-height: 100vh;
+    padding: 5vh 7vw;
+    color: @text-color;
+    overflow-y: hidden;
+    background-color: #111827;
+    letter-spacing: 0.1em;
+}
+
+p > span {
+    color: @second-color;
+    font-weight: bold;
+}
+
+.tableMarketPlace {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.rarity {
+    border-right: 1px solid @text-color;
+    border-left: 1px solid @text-color;
+    border-top: 1px solid @text-color;
+}
+
+.rareStar {
+    border-bottom: 1px solid @text-color;
+    padding: 10px;
+    text-align: center;
+}
+
+.minePowerPrice {
+    display: grid;
+}
+
+.minePower {
+    grid-area: minepower;
+    display: grid;
+    
+    & > div {
+        padding: 10px;
+        border-bottom: 1px solid @text-color;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+
+.ETLPriceWorker {
+    color: @second-color;
+    text-align: right;
+}

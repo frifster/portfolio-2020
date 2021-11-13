@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import { ToastContainer, toast } from 'react-nextjs-toast'
 import styles from '../styles/CMarket.module.less'
 
 const getEternalPrice = async () => {
@@ -51,8 +52,18 @@ function Market() {
         const PHPPrice = computeForPHPMarketPrice(multiplier)
 
         return (
-            <p className={styles.ETLPriceWorker}>{price} ETL ({PHPPrice})</p>
+            <p className={styles.ETLPriceWorker} onClick={() => copyETL(price)}>{price} ETL ({PHPPrice})</p>
         )
+    }
+
+    const copyETL = price => {
+        const textField = document.createElement('textarea')
+        textField.innerText = price
+        document.body.appendChild(textField)
+        textField.select()
+        document.execCommand('copy')
+        textField.remove()
+        toast.notify(`Good job!`, { type: "success", title: `${price} copied!`})
     }
 
     return (
@@ -62,6 +73,7 @@ function Market() {
                 <link rel="icon" href="./icon.png" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
+            <ToastContainer />
             <div className={styles.headers}>
                 <p><span>ETL :</span> $ {ETLPrice}</p>
                 <p><span>Mint Cost :</span> {mintCost} ETL</p>

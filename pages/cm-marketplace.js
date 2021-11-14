@@ -143,7 +143,7 @@ function Market() {
                         <div><p>75 to 79 MP</p>  <ETLPriceDisplay multiplier={0.6}/></div>
                         <div><p>70 to 74 MP</p>  <ETLPriceDisplay multiplier={0.5}/></div>
                         <div><p>65 to 69 MP</p>  <ETLPriceDisplay multiplier={0.4}/></div>
-                        <div><p>60 to 64 MP</p>  <ETLPriceDisplay multiplier={0.3}/></div>
+                        <div><del>60 to 64 MP</del>  <ETLPriceDisplay multiplier={0.3}/></div>
                         <div><del>55 to 59 MP</del>  <ETLPriceDisplay multiplier={0.2}/></div>
                         <div><del>51 to 54 MP</del>  <ETLPriceDisplay multiplier={0.15}/></div>
                         <div><del>50 MP</del>  <ETLPriceDisplay multiplier={0.1}/></div>

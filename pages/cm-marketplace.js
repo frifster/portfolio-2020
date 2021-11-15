@@ -42,16 +42,20 @@ function Market() {
 
     useEffect(async () => {
         //getting data for user marketplace data
-        const res = await fetch(CM_API)
-        const data = await res.json()
+        if(ownerAddress) {
+            const res = await fetch(CM_API)
+            const data = await res.json()
 
-        const filteredData = data.filter(e => e.sellerAddress == ownerAddress)
-        setMarketData(filteredData)
-        const sumOfPrice = filteredData.reduce((a, b) => {
-            return a + Number(b.price)
-        }, 0) / 1_000_000_000_000_000_000;
+            const filteredData = data.filter(e => e.sellerAddress == ownerAddress)
+            setMarketData(filteredData)
+            const sumOfPrice = filteredData.reduce((a, b) => {
+                return a + Number(b.price)
+            }, 0) / 1_000_000_000_000_000_000;
 
-        setTotalETL(sumOfPrice)
+            setTotalETL(sumOfPrice)
+        }
+
+        
     },[ownerAddress])
 
     
@@ -111,17 +115,17 @@ function Market() {
                     <div className={styles.rareStar}>⭐⭐⭐⭐⭐</div>
                     <div className={styles.minePower}>
                         <div><p>255 MP</p>  <ETLPriceDisplay multiplier={16.5}/></div>
-                        <div><p>250 to 254 MP</p>  <ETLPriceDisplay multiplier={12.95}/></div>
-                        <div><p>245 to 249 MP</p>  <ETLPriceDisplay multiplier={12}/></div>
+                        <div><p>250 to 254 MP</p>  <ETLPriceDisplay multiplier={15}/></div>
+                        <div><p>245 to 249 MP</p>  <ETLPriceDisplay multiplier={13.5}/></div>
                         <div><p>240 to 244 MP</p>  <ETLPriceDisplay multiplier={11.76}/></div>
-                        <div><p>235 to 239 MP</p>  <ETLPriceDisplay multiplier={11.75}/></div>
-                        <div><p>230 to 234 MP</p>  <ETLPriceDisplay multiplier={11.7}/></div>
-                        <div><p>225 to 229 MP</p>  <ETLPriceDisplay multiplier={11.53}/></div>
-                        <div><p>220 to 224 MP</p>  <ETLPriceDisplay multiplier={11.52}/></div>
-                        <div><p>215 to 219 MP</p>  <ETLPriceDisplay multiplier={11.51}/></div>
-                        <div><p>210 to 214 MP</p>  <ETLPriceDisplay multiplier={11.5}/></div>
-                        <div><p>205 to 209 MP</p>  <ETLPriceDisplay multiplier={10.5}/></div>
-                        <div><p>200 to 204 MP</p>  <ETLPriceDisplay multiplier={10}/></div>
+                        <div><p>235 to 239 MP</p>  <ETLPriceDisplay multiplier={11.5}/></div>
+                        <div><p>230 to 234 MP</p>  <ETLPriceDisplay multiplier={11.3}/></div>
+                        <div><p>225 to 229 MP</p>  <ETLPriceDisplay multiplier={11.06}/></div>
+                        <div><p>220 to 224 MP</p>  <ETLPriceDisplay multiplier={11.05}/></div>
+                        <div><p>215 to 219 MP</p>  <ETLPriceDisplay multiplier={10.55}/></div>
+                        <div><p>210 to 214 MP</p>  <ETLPriceDisplay multiplier={10.05}/></div>
+                        <div><p>205 to 209 MP</p>  <ETLPriceDisplay multiplier={9.95}/></div>
+                        <div><p>200 to 204 MP</p>  <ETLPriceDisplay multiplier={9.9}/></div>
                     </div>
                 </div>
                 <div className={styles.rarity}>

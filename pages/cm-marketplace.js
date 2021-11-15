@@ -13,15 +13,18 @@ const getEternalPrice = async () => {
 }
 
 const ADD_TAX = 1.17647
+const CM_API = "https://api.cryptomines.app/api/workers"
 
 function Market() {
     const [ETLPrice, setETLPrice] = useState(0)
     const [mintCost, setMintCost] = useState(0)
+    const [ownerAddress, setOwnerAddress] = useState('')
+    const [marketData, setMarketData] = useState([])
+    const [totalETL, setTotalETL] = useState(0)
 
     const setEternalPrice = () => {
         getEternalPrice()
             .then(price => {
-                console.log("SETTING PRICE")
                 const mintCost = (20 / price).toFixed(4);
                 setMintCost(mintCost)
                 setETLPrice(Number(price).toFixed(4))
@@ -35,16 +38,35 @@ function Market() {
     useEffect(() => {
           const interval = setInterval(setEternalPrice, 10000);
           return () => clearInterval(interval);
-      }, []);
+    }, []);
+
+    useEffect(async () => {
+        //getting data for user marketplace data
+        const res = await fetch(CM_API)
+        const data = await res.json()
+
+        const filteredData = data.filter(e => e.sellerAddress == ownerAddress)
+        setMarketData(filteredData)
+        const sumOfPrice = filteredData.reduce((a, b) => {
+            return a + Number(b.price)
+        }, 0) / 1_000_000_000_000_000_000;
+
+        setTotalETL(sumOfPrice)
+    },[ownerAddress])
 
     
     const computeForMarketPrice = multiplier => {
         return (mintCost * ADD_TAX * multiplier).toFixed(3)
     }
 
+    const formatter = new Intl.NumberFormat('en-US', { currency: 'PHP', style: 'currency' })
+
     const computeForPHPMarketPrice = multiplier => {
-        const formatter = new Intl.NumberFormat('en-US', { currency: 'PHP', style: 'currency' })
         return formatter.format((mintCost * ADD_TAX * multiplier * ETLPrice * 50).toFixed(2))
+    }
+
+    const etlToPeso = etl => {
+        return formatter.format((etl * ETLPrice * 50).toFixed(2))
     }
 
     const ETLPriceDisplay = ({ multiplier }) => {
@@ -64,6 +86,10 @@ function Market() {
         document.execCommand('copy')
         textField.remove()
         toast.notify(`Good job!`, { type: "success", title: `${price} copied!`})
+    }
+
+    const changeOwnerAddress = (e) => {
+        setOwnerAddress(e.target.value)
     }
 
     return (
@@ -149,6 +175,13 @@ function Market() {
                         <div><del>50 MP</del>  <ETLPriceDisplay multiplier={0.1}/></div>
                     </div>
                 </div>
+            </div>
+
+            <div className={styles.yourMP}>
+                <p> <span>Enter your contract address:</span> <input onChange={changeOwnerAddress}/></p>
+                <p><span>Your Marketplace:</span> {marketData.length} item/s</p>
+                <p><span>Total Market ETL:</span> {totalETL} ({etlToPeso(totalETL)})</p>
+                <p><span>Total Market ETL minus tax:</span> {(totalETL * 0.85).toFixed(3)} ({etlToPeso(totalETL * 0.85)})</p>
             </div>
 
             <div className={styles.footNote}>

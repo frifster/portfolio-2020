@@ -4,10 +4,12 @@ import { ToastContainer, toast } from 'react-nextjs-toast'
 import styles from '../styles/CMarket.module.less'
 
 const getEternalPrice = async () => {
-    const PANCAKE_ETL = "https://api.pancakeswap.info/api/v2/tokens/0xD44FD09d74cd13838F137B590497595d6b3FEeA4"
-    const response = await fetch(PANCAKE_ETL);
+    // const PANCAKE_ETL = "https://api.pancakeswap.info/api/v2/tokens/0xD44FD09d74cd13838F137B590497595d6b3FEeA4"
+    const COIN_GECKO_API = "https://api.coingecko.com/api/v3/simple/price?ids=cryptomines-eternal&vs_currencies=usd"
+    const response = await fetch(COIN_GECKO_API);
     const data = await response.json();
-    const EternalPrice = data?.data?.price || 0
+    console.log("data", data)
+    const EternalPrice = data?.["cryptomines-eternal"]?.usd || 0
     
     return EternalPrice
 }

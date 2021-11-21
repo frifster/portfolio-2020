@@ -167,18 +167,18 @@ function Market() {
                 <div className={styles.rarity}>
                     <div className={styles.rareStar}>⭐⭐</div>
                     <div className={styles.minePower}>
-                        <div><p>100 MP</p>  <ETLPriceDisplay multiplier={1.7}/></div>
-                        <div><p>95 to 99 MP</p>  <ETLPriceDisplay multiplier={1.5}/></div>
-                        <div><p>90 to 94 MP</p>  <ETLPriceDisplay multiplier={1.25}/></div>
-                        <div><p>85 to 89 MP</p>  <ETLPriceDisplay multiplier={1}/></div>
-                        <div><p>80 to 84 MP</p>  <ETLPriceDisplay multiplier={0.7}/></div>
-                        <div><p>75 to 79 MP</p>  <ETLPriceDisplay multiplier={0.6}/></div>
-                        <div><p>70 to 74 MP</p>  <ETLPriceDisplay multiplier={0.5}/></div>
-                        <div><p>65 to 69 MP</p>  <ETLPriceDisplay multiplier={0.4}/></div>
-                        <div><del>60 to 64 MP</del>  <ETLPriceDisplay multiplier={0.3}/></div>
-                        <div><del>55 to 59 MP</del>  <ETLPriceDisplay multiplier={0.2}/></div>
-                        <div><del>51 to 54 MP</del>  <ETLPriceDisplay multiplier={0.15}/></div>
-                        <div><del>50 MP</del>  <ETLPriceDisplay multiplier={0.1}/></div>
+                        <div><p>100 MP</p>  <ETLPriceDisplay multiplier={1.6}/></div>
+                        <div><p>95 to 99 MP</p>  <ETLPriceDisplay multiplier={1.25}/></div>
+                        <div><p>90 to 94 MP</p>  <ETLPriceDisplay multiplier={1}/></div>
+                        <div><p>85 to 89 MP</p>  <ETLPriceDisplay multiplier={0.7}/></div>
+                        <div><p>80 to 84 MP</p>  <ETLPriceDisplay multiplier={0.6}/></div>
+                        <div><p>75 to 79 MP</p>  <ETLPriceDisplay multiplier={0.5}/></div>
+                        <div><p>70 to 74 MP</p>  <ETLPriceDisplay multiplier={0.4}/></div>
+                        <div><del>65 to 69 MP</del>  <ETLPriceDisplay multiplier={0.3}/></div>
+                        <div><del>60 to 64 MP</del>  <ETLPriceDisplay multiplier={0.2}/></div>
+                        <div><del>55 to 59 MP</del>  <ETLPriceDisplay multiplier={0.1}/></div>
+                        <div><del>51 to 54 MP</del>  <ETLPriceDisplay multiplier={0.08}/></div>
+                        <div><del>50 MP</del>  <ETLPriceDisplay multiplier={0.07}/></div>
                     </div>
                 </div>
             </div>

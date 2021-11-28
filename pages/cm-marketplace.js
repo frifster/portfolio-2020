@@ -111,6 +111,8 @@ function Market() {
                 <p><span>Mint Cost :</span> {mintCost} ETL</p>
                 <p><span>Burn Rewards :</span> {(mintCost / 5).toFixed(5)} ETL</p>
             </div>
+            
+            <div className={styles.tableHeader}>Workers</div>
 
             <div className={styles.tableMarketPlace}>
                 <div className={styles.rarity}>
@@ -183,12 +185,40 @@ function Market() {
                 </div>
             </div>
 
-            <div className={styles.yourMP}>
+            <div className={styles.tableHeader}>Spaceships</div>
+            <div className={styles.tableMarketPlace}>
+                <div className={styles.rarity}>
+                    <div className={styles.rareStar}>⭐⭐⭐⭐⭐</div>
+                    <div className={styles.spacePower}>
+                        <div><ETLPriceDisplay multiplier={23}/></div>
+                    </div>
+                </div>
+                <div className={styles.rarity}>
+                    <div className={styles.rareStar}>⭐⭐⭐⭐</div>
+                    <div className={styles.spacePower}>
+                        <div><ETLPriceDisplay multiplier={11.5}/></div>
+                    </div>
+                </div>
+                <div className={styles.rarity}>
+                    <div className={styles.rareStar}>⭐⭐⭐</div>
+                    <div className={styles.spacePower}>
+                        <div><ETLPriceDisplay multiplier={1.5}/></div>
+                    </div>
+                </div>
+                <div className={styles.rarity}>
+                    <div className={styles.rareStar}>⭐⭐</div>
+                    <div className={styles.spacePower}>
+                        <div><ETLPriceDisplay multiplier={0.32}/></div>
+                    </div>
+                </div>
+            </div>
+
+            {/* <div className={styles.yourMP}>
                 <p> <span>Enter your contract address:</span> <input onChange={changeOwnerAddress}/></p>
                 <p><span>Your Marketplace:</span> {marketData.length} item/s</p>
                 <p><span>Total Market ETL:</span> {totalETL} ({etlToPeso(totalETL)})</p>
                 <p><span>Total Market ETL minus tax:</span> {(totalETL * 0.85).toFixed(3)} ({etlToPeso(totalETL * 0.85)})</p>
-            </div>
+            </div> */}
 
             <div className={styles.footNote}>
                 <em>For bug reports, improvement suggestions and requests, dm me @ discord frifster#1185 </em>

@@ -11,7 +11,11 @@
 .headers {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-bottom: 2vh;
+    p {
+        margin-bottom: 0;
+    }
+
+    margin-bottom: 1.5vh;
 }
 
 .container {
@@ -29,6 +33,10 @@
 p > span {
     color: @second-color;
     font-weight: bold;
+}
+
+.tableHeader {
+    padding: 1.5vh 0;
 }
 
 .tableMarketPlace {
@@ -51,6 +59,8 @@ p > span {
     display: grid;
 }
 
+
+.spacePower,
 .minePower {
     grid-area: minepower;
     display: grid;
@@ -92,6 +102,16 @@ p > span {
         font-weight: lighter;
         color: @text-color;
     }
+}
+
+.spacePower {
+    & > div {
+        grid-template-columns: 1fr;
+    }
+}
+
+.spacePower .ETLPriceWorker {
+    text-align: center;
 }
 
 .footNote {

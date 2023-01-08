@@ -56,7 +56,7 @@ export const WORK_EXPERIENCES = {
     workLocation: "Mandaluyong City",
     companyName: "CTO Global Services",
     startYear: "2019",
-    endYear: "Present",
+    endYear: "2021",
     id: 4,
   },
   work5: {
@@ -72,7 +72,7 @@ export const WORK_EXPERIENCES = {
     workLocation: "Remote Work - US based Company",
     companyName: "Fulcrum",
     startYear: "March 2021",
-    endYear: "Present",
+    endYear: "December 2022",
     id: 5,
   },
 };

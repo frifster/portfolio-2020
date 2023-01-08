@@ -70,7 +70,7 @@ export default function Home() {
   }, [view]);
 
   return (
-    <div className={styles.container} onKeyPress={(e) => console.log("EEE", e)}>
+    <div className={styles.container}>
       <Head>
         <title>{title}</title>
         <link rel="icon" href="./icon.png" />
@@ -98,11 +98,8 @@ export default function Home() {
               </div>
             </div>
             <div className={styles.headingText}>Eugene Avila</div>
-            <div className={styles.userTitle}>{WorkTitle}</div>
-            <div className={styles.socialIcons}>
-              <FontAwesomeIcon icon={faFacebookF} />
-              <FontAwesomeIcon icon={faLinkedin} />
-            </div>
+            <div className={styles.userTitle}>Full Stack Developer</div>
+            <div className={styles.userTitle}>Business Owner</div>
           </div>
           <div className={styles.dowloadBtn}>
             <button>

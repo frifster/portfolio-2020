@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { spring, variants } from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
 
-function ContactView () {
+function ContactView() {
   return (
     <motion.div
       key={CONTACT_VIEW}
@@ -18,7 +18,7 @@ function ContactView () {
       <div className={styles.contactContainer}>
         <section className={styles.contact}>
           <h5>Email</h5>
-          <h6>hireme@eugenerationx.com</h6>
+          <h6>avilaeugeneb@gmail.com</h6>
         </section>
         <section className={styles.contact}>
           <h5>Mobile Number</h5>

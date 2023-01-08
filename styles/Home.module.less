@@ -61,7 +61,6 @@
     padding-top: 20px;
     display: grid;
     place-items: center;
-    gap: 15px;
 
     .profileImgContainer {
       padding: 4px;
@@ -86,23 +85,18 @@
           user-select: none;
         }
       }
+
+      margin-bottom: 15px;
     }
 
+    .headingText {
+      margin-bottom: 15px;
+    }
     .userTitle {
       color: @alt-text-color;
+      margin-bottom: 5px;
     }
 
-    .socialIcons {
-      font-size: 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      cursor: pointer;
-
-      & > :hover {
-        color: @accent-color;
-      }
-    }
   }
 
   .dowloadBtn {
@@ -130,6 +124,15 @@
     color: @alt-text-color;
     font-size: 12px;
     text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      margin-right: 5px;
+      height: 50%;
+    }
   }
 
   @media @mobile {

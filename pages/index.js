@@ -7,13 +7,14 @@ import {
   faBriefcase,
   faPhoneAlt,
   faCopyright,
+  faHandshake
 } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence } from "framer-motion";
 
 import BackgroundParticles from "../components/BackgroundParticle";
 import {
+  BUSINESS_VIEW,
   CONTACT_VIEW,
   PROFILE_VIEW,
   STUDY_VIEW,
@@ -23,11 +24,7 @@ import WorkView from "../components/WorkView";
 import AcadView from "../components/AcadView";
 import ProfileView from "../components/ProfileView";
 import ContactView from "../components/ContactView";
-import { WORK_EXPERIENCES } from "../credentials/work";
-
-const WorkTitle =
-  WORK_EXPERIENCES["work" + (Object.keys(WORK_EXPERIENCES).length - 1)]
-    .workTitle;
+import BusinessView from "../components/BusinessView";
 
 export default function Home() {
   const [view, setView] = useState(0);
@@ -36,6 +33,7 @@ export default function Home() {
     { name: PROFILE_VIEW, component: ProfileView, title: "Eugene's Portfolio" },
     { name: STUDY_VIEW, component: AcadView, title: "Academics" },
     { name: WORK_VIEW, component: WorkView, title: "Work Experiences" },
+    { name: BUSINESS_VIEW, component: BusinessView, title: "Businesses" },
     { name: CONTACT_VIEW, component: ContactView, title: "Reach me" },
   ];
 
@@ -82,7 +80,8 @@ export default function Home() {
           <FontIcon icon={faUser} currentView={0} />
           <FontIcon icon={faGraduationCap} currentView={1} />
           <FontIcon icon={faBriefcase} currentView={2} />
-          <FontIcon icon={faPhoneAlt} currentView={3} />
+          <FontIcon icon={faHandshake} currentView={3} />
+          <FontIcon icon={faPhoneAlt} currentView={4} />
         </div>
       </div>
       <div className={styles.innerBox}>

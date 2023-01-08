@@ -1,0 +1,37 @@
+import { BUSINESS_VIEW } from '../constants/view'
+import { motion } from 'framer-motion'
+import { spring, variants } from '../animations/homeVariants'
+import styles from '../styles/Home.module.less'
+import { BUSINESSES } from '../credentials/businesses'
+
+function BusinessView() {
+    return (
+        <motion.div
+            key={BUSINESS_VIEW}
+            transition={spring}
+            initial='enter'
+            exit='exit'
+            animate='center'
+            variants={variants}
+            className={styles.mainContent}
+        >
+            <h3>Businesses</h3>
+            <div className={styles.experienceContainer}>
+                {
+                    Object.values(BUSINESSES).sort().reverse()
+                        .map(business => (
+                            <section className={styles.experience} key={business.business + business.id}>
+                                <h5>{business.business}</h5>
+                                <h6>{business.role}</h6>
+                                <h6>{business.type}</h6>
+                                <h6>{business.location}</h6>
+                                <h6>{business.founded}</h6>
+                            </section>
+                        ))
+                }
+            </div>
+        </motion.div>
+    )
+}
+
+export default BusinessView

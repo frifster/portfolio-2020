@@ -75,4 +75,34 @@ export const WORK_EXPERIENCES = {
     endYear: "December 2021",
     id: 5,
   },
+  work6: {
+    workTitle: "Business Owner",
+    workDescription: "Coffee Shop",
+    workDetails: [
+      "Conceptualizing business and product idea",
+      "Managing people and assisting new hires",
+      "Handling logistics for product stocks and consumables",
+      "Managing social media pages"
+    ],
+    workLocation: "Calamba Laguna",
+    companyName: "Grind & Blend PH",
+    startYear: "2022",
+    endYear: "Present",
+    id: 6,
+  },
+  work7: {
+    workTitle: "Business Owner",
+    workDescription: "Apparel Store",
+    workDetails: [
+      "Conceptualizing business and product idea",
+      "Managing people and assisting new hires",
+      "Handling logistics for product stocks and consumables",
+      "Managing social media pages"
+    ],
+    workLocation: "Calamba Laguna",
+    companyName: "San's Closet PH",
+    startYear: "2022",
+    endYear: "Present",
+    id: 6,
+  },
 };

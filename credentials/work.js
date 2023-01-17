@@ -72,7 +72,7 @@ export const WORK_EXPERIENCES = {
     workLocation: "Remote Work - US based Company",
     companyName: "Fulcrum",
     startYear: "March 2021",
-    endYear: "December 2022",
+    endYear: "December 2021",
     id: 5,
   },
 };

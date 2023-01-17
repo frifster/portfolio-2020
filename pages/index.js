@@ -102,7 +102,7 @@ export default function Home() {
           </div>
           <div className={styles.dowloadBtn}>
             <button>
-              <a href="./AvilaResume.pdf" download>
+              <a href="./AvilaEugene.pdf" download>
                 Download CV
               </a>
             </button>

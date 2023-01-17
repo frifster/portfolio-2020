@@ -28,6 +28,7 @@ import BusinessView from "../components/BusinessView";
 
 export default function Home() {
   const [view, setView] = useState(0);
+  const [year, setYear] = useState(2020);
 
   const VIEWS = [
     { name: PROFILE_VIEW, component: ProfileView, title: "Eugene's Portfolio" },
@@ -66,6 +67,12 @@ export default function Home() {
       document.removeEventListener("keydown", handleEvent, false);
     };
   }, [view]);
+
+  // setting date 
+  useEffect(() => {
+    const now = new Date();
+    setYear(now.getFullYear())
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -108,7 +115,7 @@ export default function Home() {
             </button>
           </div>
           <footer className={styles.footer}>
-            <FontAwesomeIcon icon={faCopyright} /> 2020 All rights reserved.
+            <FontAwesomeIcon icon={faCopyright} /> {year} All rights reserved.
           </footer>
         </section>
         <div className={styles.animateDiv}>

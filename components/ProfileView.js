@@ -17,19 +17,13 @@ function ProfileView() {
       <h3>Greetings Visitor!</h3>
       <div className={styles.greetingsContainer}>
         <p>
-          I am a <strong>Full Stack Developer</strong> that specializes in React
-          JS and React native. I have 4 years of professional experience when it
-          comes to developing websites and mobile applications. I also help my
-          team in designing system that will optimize business operations
-          processes like apps that automates task and generates reports.
+          I am a <strong>Full Stack Developer</strong> specializing in React JS and React Native. I have four (4) years of professional experience developing websites and mobile applications. I have helped local and international clients design systems that will optimize their business operation processes. Applications that automate tasks and generate reports are my forte.
         </p>
         <p>
-          My goal is to broaden my knowledge in web development by learning new
-          tools. I also want to help more developers in achieving their goal by
-          sharing my experiences to them.
+          Leading a team of developers also has honed me to actively work with people, and business partners in identifying the pain points of a project, while also implementing solutions that would work best for them.
         </p>
         <p>
-          Recently, I took a break from programming and development career to start local businesses for me and my family and but now I am now ready to get back to my journey as a developer.
+          My goal is to broaden my knowledge in web development by learning new tools that could help small to medium-scale businesses to streamline their operations. Recently, I was able to share my expertise when my family and I started local businesses. The experience gave me a business owner’s point of view and has helped in my thought process for developing systems.
         </p>
         <p>
           If you visit my website wanting to know more about what I do and what

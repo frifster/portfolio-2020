@@ -5,7 +5,7 @@ export const BUSINESSES = {
         founded: '2022',
         location: 'Brgy. Palo Alto, Calamba, Laguna',
         role: 'Part Owner',
-        link: 'https://www.facebook.com/SansClosetPH',
+        link: 'https://www.facebook.com/grindandblend',
         desc: '',
         id: 0
     },
@@ -15,7 +15,7 @@ export const BUSINESSES = {
         founded: '2022',
         location: 'Brgy. Palo Alto, Calamba, Laguna',
         role: 'Part Owner',
-        link: 'https://www.facebook.com/grindandblend',
+        link: 'https://www.facebook.com/SansClosetPH',
         desc: '',
         id: 1
     },

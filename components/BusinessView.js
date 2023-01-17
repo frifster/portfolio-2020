@@ -1,5 +1,8 @@
-import { BUSINESS_VIEW } from '../constants/view'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion'
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+
+import { BUSINESS_VIEW } from '../constants/view'
 import { spring, variants } from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
 import { BUSINESSES } from '../credentials/businesses'
@@ -18,10 +21,10 @@ function BusinessView() {
             <h3>Businesses</h3>
             <div className={styles.experienceContainer}>
                 {
-                    Object.values(BUSINESSES).sort().reverse()
+                    Object.values(BUSINESSES).sort()
                         .map(business => (
                             <section className={styles.experience} key={business.business + business.id}>
-                                <h5>{business.business}</h5>
+                                <h5><a href={business.link} target='_blank'>{business.business} <FontAwesomeIcon icon={faExternalLinkAlt} /> </a></h5>
                                 <h6>{business.role}</h6>
                                 <h6>{business.type}</h6>
                                 <h6>{business.location}</h6>

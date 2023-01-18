@@ -25,6 +25,11 @@ function BusinessView() {
                         .map(business => (
                             <section className={styles.experience} key={business.business + business.id}>
                                 <h5><a href={business.link} target='_blank'>{business.business} <FontAwesomeIcon icon={faExternalLinkAlt} /> </a></h5>
+                                {
+                                    business.grabFoodLink
+                                        ? <h6><a href={business.grabFoodLink} target='_blank'><strong>Grab Food</strong> <FontAwesomeIcon icon={faExternalLinkAlt} /></a></h6>
+                                        : ""
+                                }
                                 <h6>{business.role}</h6>
                                 <h6>{business.type}</h6>
                                 <h6>{business.location}</h6>

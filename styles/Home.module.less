@@ -146,7 +146,7 @@
 }
 
 .mainContent {
-  background-color: rgba(0, 20, 50, 0.3);
+  background-color: @box-color;
   height: 100%;
   position: relative;
 }
@@ -215,7 +215,8 @@
 
 .contactContainer,
 .greetingsContainer,
-.experienceContainer {
+.experienceContainer,
+.projectsContainer {
   max-height: calc(77vh - (40px + 3.17em));
   overflow-y: auto;
 
@@ -236,7 +237,8 @@
 }
 
 .contact,
-.experience {
+.experience,
+.project {
   padding: 20px;
   border-left: 2px dotted @accent-color;
   border-bottom: 2px dotted @accent-color;
@@ -259,7 +261,7 @@
     line-height: 1.5em;
 
     svg {
-      height: 12px;
+      height: 9px;
     }
   }
 
@@ -278,4 +280,109 @@
   &:last-child {
     border-bottom: none;
   }
+
+  .projectHeader {
+    display: grid;
+
+    .repo {
+      font-size: .6em;
+      padding: .2em .5em;
+      margin: .4em;
+      border: .1em solid @sub-color;
+      border-radius: 1em;
+      color: @sub-color;
+      user-select: none;
+    }
+  }
+
+  .techstacks {
+    min-height: 10px;
+    margin-top: 5px;
+    display: grid;
+    grid-template-areas: "image image image image desc desc desc desc desc";
+
+    position: relative;
+
+
+    .projectImage {
+      grid-area: image;
+      margin-top: .5em;
+      
+      img {
+        width: 100%;
+      }
+
+      @media @mobile {
+        display: none;
+      }
+    }
+
+    .projectDesc {
+      grid-area: desc;
+      background-color: @dark-box-color;
+
+      border-radius: 1em;
+      padding: 1em;
+      user-select: none;
+
+      p {
+        line-height: 1.7em;
+        color: @alt-text-color;
+      }
+
+      .techs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 1em;
+        align-items: start;
+
+        margin-top: 2em;
+
+        span {
+          font-size: .6em;
+          color: @alt-text-color;
+          padding: .3em;
+          border-right: .1em solid @accent-color;
+          border-bottom: .1em solid @accent-color;
+          text-align: center;
+          line-height: 1.5em;
+          border-radius: .5em;
+
+          &:hover {
+            color: @dark-box-color;
+            background-color: @second-color;
+            border-color: @alt-text-color;
+            font-weight: bold;
+          }
+        }
+      }
+
+      @media @mobile {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    @media @mobile {
+      display: initial;
+    }
+  }
+
+}
+
+.projectsContainer {
+
+  .project {
+    &:nth-child(even) {
+      .projectHeader {
+        place-content: end;
+      }
+
+      .techstacks {
+        grid-template-areas: "desc desc desc desc desc image image image image";
+      }
+    }
+  }
+  
 }

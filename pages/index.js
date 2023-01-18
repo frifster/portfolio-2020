@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.less";
 import {
+  faHome,
   faUser,
   faGraduationCap,
   faBriefcase,
   faPhoneAlt,
   faCopyright,
-  faHandshake
+  faHandshake,
+  faTools
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence } from "framer-motion";
@@ -17,6 +19,7 @@ import {
   BUSINESS_VIEW,
   CONTACT_VIEW,
   PROFILE_VIEW,
+  PROJECTS_VIEW,
   STUDY_VIEW,
   WORK_VIEW,
 } from "../constants/view";
@@ -25,6 +28,7 @@ import AcadView from "../components/AcadView";
 import ProfileView from "../components/ProfileView";
 import ContactView from "../components/ContactView";
 import BusinessView from "../components/BusinessView";
+import ProjectsView from "../components/ProjectsView";
 
 export default function Home() {
   const [view, setView] = useState(0);
@@ -34,6 +38,7 @@ export default function Home() {
     { name: PROFILE_VIEW, component: ProfileView, title: "Eugene's Portfolio" },
     { name: STUDY_VIEW, component: AcadView, title: "Academics" },
     { name: WORK_VIEW, component: WorkView, title: "Work Experiences" },
+    { name: PROJECTS_VIEW, component: ProjectsView, title: "Projects" },
     { name: BUSINESS_VIEW, component: BusinessView, title: "Businesses" },
     { name: CONTACT_VIEW, component: ContactView, title: "Reach me" },
   ];
@@ -84,11 +89,12 @@ export default function Home() {
       <BackgroundParticles />
       <div className={styles.outerControls}>
         <div className={styles.mainControl}>
-          <FontIcon icon={faUser} currentView={0} />
+          <FontIcon icon={faHome} currentView={0} />
           <FontIcon icon={faGraduationCap} currentView={1} />
           <FontIcon icon={faBriefcase} currentView={2} />
-          <FontIcon icon={faHandshake} currentView={3} />
-          <FontIcon icon={faPhoneAlt} currentView={4} />
+          <FontIcon icon={faTools} currentView={3} />
+          <FontIcon icon={faHandshake} currentView={4} />
+          <FontIcon icon={faPhoneAlt} currentView={5} />
         </div>
       </div>
       <div className={styles.innerBox}>

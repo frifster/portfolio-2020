@@ -6,6 +6,7 @@ export const BUSINESSES = {
         location: 'Brgy. Palo Alto, Calamba, Laguna',
         role: 'Part Owner',
         link: 'https://www.facebook.com/grindandblend',
+        grabFoodLink: 'https://bit.ly/grindandblendph',
         desc: '',
         id: 0
     },

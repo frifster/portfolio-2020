@@ -39,11 +39,13 @@ function ProjectsView() {
                                 </div>
                                 <div className={styles.techstacks}>
                                     <div className={styles.projectImage}>
-                                        <img
-                                            src={"./" + project.image}
-                                            draggable={false}
-                                            alt="Developer's Profile Picture"
-                                        />
+                                        <a href={project.link || ''} target='_blank'>
+                                            <img
+                                                src={"./" + project.image}
+                                                draggable={false}
+                                                alt="Developer's Profile Picture"
+                                            />
+                                        </a>
                                     </div>
                                     <div className={styles.projectDesc}>
                                         {

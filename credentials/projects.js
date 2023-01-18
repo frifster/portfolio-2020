@@ -132,6 +132,7 @@ export const PROJECTS = {
             "Minimalist design as per client request",
             "Mobile Responsive"
         ],
+        link: 'https://ghiaburac.eugenerationx.com',
         id: 4
     },
 }

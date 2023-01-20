@@ -75,7 +75,7 @@ export const PROJECTS = {
         },
         image: 'projects/FLEETHQ.png',
         projectDesc: [
-            "Fleet HQ Mobile App is an android mobile application for admins a the delivery company. This app is deployed to Google Play Store.",
+            "Fleet HQ Mobile App is an android mobile application for admins of a delivery company. This app is deployed to Google Play Store.",
             "This app lets the user scans a parcel and will automatically be drafted to the company's system.",
             "Coded using React Native and React Concepts.",
             "Mobile Responsive",
@@ -128,7 +128,7 @@ export const PROJECTS = {
         image: 'projects/GhiaPortfolio.png',
         projectDesc: [
             "Website for an upwork freelancer client",
-            "Showcases my her upwork experiences.",
+            "Showcases her upwork experiences.",
             "Minimalist design as per client request",
             "Mobile Responsive"
         ],

@@ -3,9 +3,10 @@ import { motion } from 'framer-motion'
 import { PROJECTS_VIEW } from '../constants/view'
 import { spring, variants } from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
-import { PROJECTS } from "../credentials/projects";
 
-function ProjectsView() {
+function ProjectsView({ data }) {
+    console.log({ data })
+
     return (
         <motion.div
             key={PROJECTS_VIEW}
@@ -19,7 +20,7 @@ function ProjectsView() {
             <h3>Projects</h3>
             <div className={styles.projectsContainer}>
                 {
-                    Object.values(PROJECTS)
+                    Object.values(data)
                         .map(project => (
                             <section className={styles.project} key={project.title + project.id}>
                                 <div className={styles.projectHeader}>

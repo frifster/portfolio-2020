@@ -1,7 +1,7 @@
 import graphql from "./client";
 
 
-const getPortfolioCredentials = graphql.request(
+const getCredentials = graphql.request(
   `
       query Portfolio {
         academics(orderBy: createdAt_ASC) {
@@ -22,9 +22,22 @@ const getPortfolioCredentials = graphql.request(
           location
           link
           role
+          id
+        }
+
+        projects {
+          codeRepo
+          company
+          id
+          image
+          link
+          projectDesc
+          role
+          techstack
+          title
         }
     }
     `
 );
 
-export default getPortfolioCredentials;
+export default getCredentials;

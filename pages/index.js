@@ -30,30 +30,33 @@ import ContactView from "../components/ContactView";
 import BusinessView from "../components/BusinessView";
 import ProjectsView from "../components/ProjectsView";
 
-import getPortfolioCredentials from "../graphql/portfolioCredentials";
+import getCredentials from "../graphql/credentials";
 
 export async function getStaticProps() {
 
-  const { academics, businesses } = await getPortfolioCredentials;
+  const { academics, businesses, projects } = await getCredentials;
 
   return {
     props: {
       academics,
-      businesses
+      businesses,
+      projects
     },
   };
 }
 
 
-export default function Home({ academics, businesses }) {
+export default function Home({ academics, businesses, projects }) {
   const [view, setView] = useState(0);
-  const [year, setYear] = useState(2020);
+  const now = new Date();
+  const year = now.getFullYear();
+
 
   const VIEWS = [
     { name: PROFILE_VIEW, component: ProfileView, title: "Eugene's Portfolio" },
     { name: STUDY_VIEW, component: AcadView, title: "Academics", data: academics },
     { name: WORK_VIEW, component: WorkView, title: "Work Experiences" },
-    { name: PROJECTS_VIEW, component: ProjectsView, title: "Projects" },
+    { name: PROJECTS_VIEW, component: ProjectsView, title: "Projects", data: projects },
     { name: BUSINESS_VIEW, component: BusinessView, title: "Businesses", data: businesses },
     { name: CONTACT_VIEW, component: ContactView, title: "Reach me" },
   ];
@@ -87,12 +90,6 @@ export default function Home({ academics, businesses }) {
       document.removeEventListener("keydown", handleEvent, false);
     };
   }, [view]);
-
-  // setting date 
-  useEffect(() => {
-    const now = new Date();
-    setYear(now.getFullYear())
-  }, [])
 
   return (
     <div className={styles.container}>

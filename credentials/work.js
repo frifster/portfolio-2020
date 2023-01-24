@@ -103,6 +103,6 @@ export const WORK_EXPERIENCES = {
     companyName: "San's Closet PH",
     startYear: "2022",
     endYear: "Present",
-    id: 6,
+    id: 7,
   },
 };

@@ -2,9 +2,9 @@ import { STUDY_VIEW } from '../constants/view'
 import { motion } from 'framer-motion'
 import { spring, variants } from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
-import { ACADEMICS } from '../credentials/academics'
 
-function AcadView () {
+function AcadView(props) {
+
   return (
     <motion.div
       key={STUDY_VIEW}
@@ -18,7 +18,7 @@ function AcadView () {
       <h3>Academics and Certifications</h3>
       <div className={styles.experienceContainer}>
         {
-          Object.values(ACADEMICS).sort().reverse()
+          Object.values(props.data)
             .map(acads => (
               <section className={styles.experience} key={acads.school + acads.id}>
                 <h5>{acads.course}</h5>

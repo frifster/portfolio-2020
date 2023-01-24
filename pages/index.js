@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+
 import styles from "../styles/Home.module.less";
 import {
   faHome,
-  faUser,
   faGraduationCap,
   faBriefcase,
   faPhoneAlt,
@@ -30,13 +30,27 @@ import ContactView from "../components/ContactView";
 import BusinessView from "../components/BusinessView";
 import ProjectsView from "../components/ProjectsView";
 
-export default function Home() {
+import getAcademics from "../graphql/academics";
+
+export async function getStaticProps() {
+
+  const { academics } = await getAcademics;
+
+  return {
+    props: {
+      academics,
+    },
+  };
+}
+
+
+export default function Home({ academics }) {
   const [view, setView] = useState(0);
   const [year, setYear] = useState(2020);
 
   const VIEWS = [
     { name: PROFILE_VIEW, component: ProfileView, title: "Eugene's Portfolio" },
-    { name: STUDY_VIEW, component: AcadView, title: "Academics" },
+    { name: STUDY_VIEW, component: AcadView, title: "Academics", data: academics },
     { name: WORK_VIEW, component: WorkView, title: "Work Experiences" },
     { name: PROJECTS_VIEW, component: ProjectsView, title: "Projects" },
     { name: BUSINESS_VIEW, component: BusinessView, title: "Businesses" },
@@ -126,7 +140,7 @@ export default function Home() {
         </section>
         <div className={styles.animateDiv}>
           <AnimatePresence initial={false}>
-            {VIEWS[view].component()}
+            {VIEWS[view].component({ data: VIEWS[view].data || {} })}
           </AnimatePresence>
         </div>
       </div>

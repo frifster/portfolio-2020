@@ -5,9 +5,8 @@ import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { BUSINESS_VIEW } from '../constants/view'
 import { spring, variants } from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
-import { BUSINESSES } from '../credentials/businesses'
 
-function BusinessView() {
+function BusinessView({ data }) {
     return (
         <motion.div
             key={BUSINESS_VIEW}
@@ -21,7 +20,7 @@ function BusinessView() {
             <h3>Businesses</h3>
             <div className={styles.experienceContainer}>
                 {
-                    Object.values(BUSINESSES).sort()
+                    Object.values(data)
                         .map(business => (
                             <section className={styles.experience} key={business.business + business.id}>
                                 <h5><a href={business.link} target='_blank'>{business.business} <FontAwesomeIcon icon={faExternalLinkAlt} /> </a></h5>

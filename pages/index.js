@@ -30,21 +30,22 @@ import ContactView from "../components/ContactView";
 import BusinessView from "../components/BusinessView";
 import ProjectsView from "../components/ProjectsView";
 
-import getAcademics from "../graphql/academics";
+import getPortfolioCredentials from "../graphql/portfolioCredentials";
 
 export async function getStaticProps() {
 
-  const { academics } = await getAcademics;
+  const { academics, businesses } = await getPortfolioCredentials;
 
   return {
     props: {
       academics,
+      businesses
     },
   };
 }
 
 
-export default function Home({ academics }) {
+export default function Home({ academics, businesses }) {
   const [view, setView] = useState(0);
   const [year, setYear] = useState(2020);
 
@@ -53,7 +54,7 @@ export default function Home({ academics }) {
     { name: STUDY_VIEW, component: AcadView, title: "Academics", data: academics },
     { name: WORK_VIEW, component: WorkView, title: "Work Experiences" },
     { name: PROJECTS_VIEW, component: ProjectsView, title: "Projects" },
-    { name: BUSINESS_VIEW, component: BusinessView, title: "Businesses" },
+    { name: BUSINESS_VIEW, component: BusinessView, title: "Businesses", data: businesses },
     { name: CONTACT_VIEW, component: ContactView, title: "Reach me" },
   ];
 

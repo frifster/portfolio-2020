@@ -2,9 +2,8 @@ import { WORK_VIEW } from "../constants/view";
 import { motion } from "framer-motion";
 import { spring, variants } from "../animations/homeVariants";
 import styles from "../styles/Home.module.less";
-import { WORK_EXPERIENCES } from "../credentials/work";
 
-function WorkView() {
+function WorkView({ data }) {
   return (
     <motion.div
       key={WORK_VIEW}
@@ -17,9 +16,7 @@ function WorkView() {
     >
       <h3>Work Experiences</h3>
       <div className={styles.experienceContainer}>
-        {Object.values(WORK_EXPERIENCES)
-          .sort()
-          .reverse()
+        {Object.values(data).reverse()
           .map((workExp) => (
             <section
               className={styles.experience}

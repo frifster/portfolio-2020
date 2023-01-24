@@ -36,6 +36,18 @@ const getCredentials = graphql.request(
           techstack
           title
         }
+
+        workExperiences {
+          companyName
+          startYear
+          workDescription
+          workDetails
+          workLocation
+          workTitle
+          endYear
+          startYear
+          id
+        }
     }
     `
 );

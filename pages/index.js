@@ -34,19 +34,20 @@ import getCredentials from "../graphql/credentials";
 
 export async function getStaticProps() {
 
-  const { academics, businesses, projects } = await getCredentials;
+  const { academics, businesses, projects, workExperiences } = await getCredentials;
 
   return {
     props: {
       academics,
       businesses,
-      projects
+      projects,
+      workExperiences
     },
   };
 }
 
 
-export default function Home({ academics, businesses, projects }) {
+export default function Home({ academics, businesses, projects, workExperiences }) {
   const [view, setView] = useState(0);
   const now = new Date();
   const year = now.getFullYear();
@@ -55,7 +56,7 @@ export default function Home({ academics, businesses, projects }) {
   const VIEWS = [
     { name: PROFILE_VIEW, component: ProfileView, title: "Eugene's Portfolio" },
     { name: STUDY_VIEW, component: AcadView, title: "Academics", data: academics },
-    { name: WORK_VIEW, component: WorkView, title: "Work Experiences" },
+    { name: WORK_VIEW, component: WorkView, title: "Work Experiences", data: workExperiences },
     { name: PROJECTS_VIEW, component: ProjectsView, title: "Projects", data: projects },
     { name: BUSINESS_VIEW, component: BusinessView, title: "Businesses", data: businesses },
     { name: CONTACT_VIEW, component: ContactView, title: "Reach me" },

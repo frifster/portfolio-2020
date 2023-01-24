@@ -2,9 +2,9 @@ import graphql from "./client";
 
 
 const getAcademics = graphql.request(
-    `
+  `
       query Academics {
-        academics(orderBy: publishedAt_ASC) {
+        academics(orderBy: createdAt_ASC) {
           id
           location
           school

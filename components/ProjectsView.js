@@ -31,7 +31,7 @@ function ProjectsView({ data }) {
                                                 ? <span className={styles.repo}>Private Repo</span>
                                                 :
                                                 <span className={styles.repo}>
-                                                    <a href={project.codeRepo.githubLink} target='_blank'>Github</a>
+                                                    <a href={project.codeRepo.githubLink} target='_blank' rel='noopener noreferrer'>Github</a>
                                                 </span>
                                         }
                                     </h5>
@@ -40,7 +40,7 @@ function ProjectsView({ data }) {
                                 </div>
                                 <div className={styles.techstacks}>
                                     <div className={styles.projectImage}>
-                                        <a href={project.link || ''} target='_blank'>
+                                        <a href={project.link || ''} target='_blank' rel='noopener noreferrer'>
                                             <img
                                                 src={"./" + project.image}
                                                 draggable={false}

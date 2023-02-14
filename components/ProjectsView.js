@@ -3,9 +3,12 @@ import { motion } from 'framer-motion'
 import { PROJECTS_VIEW } from '../constants/view'
 import { spring, variants } from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
+import { useRouter } from 'next/router'
 
 function ProjectsView({ data }) {
-    console.log({ data })
+    const router = useRouter();
+
+    const goToSideProjects = () => router.push('/mini-projects');
 
     return (
         <motion.div
@@ -17,7 +20,7 @@ function ProjectsView({ data }) {
             variants={variants}
             className={styles.mainContent}
         >
-            <h3>Projects</h3>
+            <h3>Projects <span onClick={goToSideProjects}>Go to Side Projects Instead</span></h3>
             <div className={styles.projectsContainer}>
                 {
                     Object.values(data)

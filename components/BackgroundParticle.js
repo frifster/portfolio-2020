@@ -1,45 +1,49 @@
 import styles from "../styles/Home.module.less";
-import Particles from "react-particles-js";
+import Particles from "react-particles";
+import { useCallback } from "react";
+import { loadFull } from "tsparticles";
 
-const params = {
+
+const options = {
+  fpsLimit: 120,
   particles: {
-    number: {
-      value: 30,
-    },
-    size: {
-      value: 10,
-      random: true,
-      anim: {
-        speed: 10,
-        size_min: 1,
-      },
-    },
     color: {
-      value: "#8efcdd",
-    },
-    rotate: {
-      value: 20,
-      animation: {
-        enable: true,
-        speed: 2000,
-      },
+      value: "#01241a",
     },
     move: {
-      out_mode: "out",
-    },
-    line_linked: {
-      enable: false,
-    },
-  },
-  interactivity: {
-    modes: {
-      remove: {
-        particles_nb: 10,
+      directions: "none",
+      enable: true,
+      outModes: {
+        default: "bounce",
       },
+      random: true,
+      speed: 3,
+      straight: false,
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 1000,
+      },
+      value: 60,
+    },
+    opacity: {
+      value: 0.5,
+    },
+    shape: {
+      type: "star",
+    },
+    size: {
+      value: { min: 1, max: 4 },
     },
   },
-};
+  detectRetina: true,
+}
 
 export default function BackgroundParticles() {
-  return <Particles className={styles.particles} params={params} />;
+
+  const particlesInit = useCallback(async engine => {
+    await loadFull(engine);
+  }, []);
+  return <Particles id="tsparticles" init={particlesInit} className={styles.particles} options={options} />;
 }

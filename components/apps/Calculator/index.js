@@ -79,7 +79,7 @@ function Calculator() {
 
                 <div>
                     <h4>Concepts Applied:</h4>
-                    <p>- Reducer/Redux Statemanagement</p>
+                    <p>- Reducer/Redux State management</p>
                     <p>- CSS GRID</p>
                     <p>- React Event Handling</p>
                     <p>- Basic React JS</p>

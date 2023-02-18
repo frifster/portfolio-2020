@@ -17,7 +17,7 @@ function ProfileView() {
       <h3>Greetings Visitor!</h3>
       <div className={styles.greetingsContainer}>
         <p>
-          I am a <strong>Full Stack Developer</strong> specializing in React JS and React Native. I have four (4) years of professional experience developing websites and mobile applications. I have helped local and international clients design systems that will optimize their business operation processes. Applications that automate tasks and generate reports are my forte.
+          I am a <strong>Full Stack Developer</strong> specializing in React JS and React Native. I have five (5) years of professional experience developing websites and mobile applications. I have helped local and international clients design systems that will optimize their business operation processes. Applications that automate tasks and generate reports are my forte.
         </p>
         <p>
           Leading a team of developers also has honed me to actively work with people, and business partners in identifying the pain points of a project, while also implementing solutions that would work best for them.

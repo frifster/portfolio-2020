@@ -7,6 +7,7 @@ import Calculator from '../../components/apps/Calculator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router'
+import ConnectFour from '../../components/apps/ConnectFour';
 
 function Projects() {
     const router = useRouter();
@@ -28,6 +29,7 @@ function Projects() {
                 />
                 <h1 className={styles.title}>Side Projects</h1>
                 <Calculator />
+                <ConnectFour />
             </div>
         </div>
     )

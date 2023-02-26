@@ -11,7 +11,6 @@ function reducer(state, { type, payload }) {
     switch (type) {
 
         case ACTIONS.ADD_DIGIT:
-            console.log("state.currentOperand", state.currentOperand)
             if (state.overwrite) {
                 return {
                     ...state,

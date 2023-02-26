@@ -57,6 +57,7 @@
     border-radius: 2rem;
 
     grid-column: span 9;
+    margin: 1rem;
 
     display: grid;
 
@@ -175,6 +176,84 @@
         letter-spacing: 0.12ch;
         font-size: 0.8em;
       }
+    }
+  }
+}
+
+.connectFour {
+  .gameModes {
+    button {
+      outline: none;
+      margin: 0.2em;
+      padding: 0.4em 0.5em;
+      color: @second-color;
+      background: none;
+      border: 1px solid @second-color;
+      border-radius: 0.5em;
+      cursor: pointer;
+
+      &:hover,
+      &:active {
+        background-color: @second-color;
+        color: black;
+      }
+    }
+  }
+
+  .playerInfo {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1vmin;
+    align-items: center;
+  }
+
+  @squareSize: 7vmin;
+
+  .blackBall,
+  .redBall,
+  .blueBall {
+    border: 1px solid @main-color;
+    height: calc(@squareSize / 2);
+    width: calc(@squareSize / 2);
+    border-radius: 50%;
+  }
+
+  .blackBall {
+    background-color: black;
+  }
+
+  .redBall {
+    background-color: red;
+  }
+
+  .blueBall {
+    background-color: blue;
+  }
+
+  .gameBoard {
+    margin-top: 3vmin;
+    background: @dark-box-color;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: @squareSize * 7;
+
+    .boardColumn {
+      border: 0.1em solid @accent-color;
+      width: @squareSize;
+      height: calc(@squareSize * 6);
+
+      display: grid;
+      cursor: pointer;
+
+      &:hover {
+        background-color: @sub-color;
+      }
+    }
+
+    .boardRow {
+      border-top: 1px solid @accent-color;
+      display: grid;
+      place-items: center;
     }
   }
 }

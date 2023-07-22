@@ -289,7 +289,7 @@
 		min-height: 10px;
 		margin-top: 5px;
 		display: grid;
-		grid-template-areas: "image image image image desc desc desc desc desc";
+		grid-template-areas: "image image image image image desc desc desc desc";
 
 		position: relative;
 
@@ -323,18 +323,18 @@
 
 			.techs {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-				gap: 1em;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 0.3em;
 				align-items: start;
 
-				margin-top: 2em;
+				margin-top: 1em;
 
 				span {
 					font-size: 0.6em;
 					color: @alt-text-color;
-					padding: 0.3em;
-					border-right: 0.1em solid @accent-color;
-					border-bottom: 0.1em solid @accent-color;
+					padding: 0.5em;
+					border-right: 0.2em solid @accent-color;
+					border-bottom: 0.2em solid @accent-color;
 					text-align: center;
 					border-radius: 0.5em;
 					letter-spacing: 0ch;
@@ -342,7 +342,9 @@
 					&:hover {
 						color: black;
 						background-color: @second-color;
-						border-color: @alt-text-color;
+
+						border-right: 0.2em solid white;
+						border-bottom: 0.2em solid white;
 					}
 				}
 			}
@@ -368,7 +370,7 @@
 			}
 
 			.techstacks {
-				grid-template-areas: "desc desc desc desc desc image image image image";
+				grid-template-areas: "desc desc desc desc image image image image image";
 			}
 		}
 	}

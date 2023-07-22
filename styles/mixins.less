@@ -1,50 +1,59 @@
 @import "./color.less";
 
 .user-select {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .relative-box {
-  background-color: @box-color;
-  height: 100%;
-  position: relative;
+	background-color: @box-color;
+	height: 100%;
+	position: relative;
 }
 
 .container-defaults {
-  font-family: "Montserrat", sans-serif;
-  min-height: 100vh;
-  display: grid;
-  color: @text-color;
-  overflow-y: hidden;
+	font-family: "Montserrat", sans-serif;
+	min-height: 100vh;
+	display: grid;
+	color: @text-color;
+	overflow-y: hidden;
 }
 
 .faIcons {
-  cursor: pointer;
-  font-size: 25px;
+	cursor: pointer;
+	font-size: 25px;
 
-  &:hover {
-    color: @accent-color;
-  }
+	&:hover {
+		color: @accent-color;
+	}
 
-  @media @mobile {
-    font-size: 15px;
-  }
+	@media @mobile {
+		font-size: 15px;
+	}
 }
 
 .pill {
-  font-size: 0.6em;
-  padding: 0.2em 0.5em;
-  margin: 0.4em;
-  border: 0.1em solid @sub-color;
-  border-radius: 1em;
-  color: @sub-color;
-  .user-select();
-  cursor: pointer;
-  font-weight: lighter;
+	font-size: 0.6em;
+	padding: 0.2em 0.5em;
+	margin: 0.4em;
+	border: 0.1em solid @sub-color;
+	border-radius: 1em;
+	color: @sub-color;
+	.user-select();
+	cursor: pointer;
+	font-weight: lighter;
 
-  @media @mobile {
-    font-size: 0.45em;
-  }
+	@media @mobile {
+		font-size: 0.45em;
+	}
+}
+
+.remove-scrollbar {
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }

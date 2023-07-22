@@ -20,7 +20,6 @@ function Projects() {
                 <link rel="icon" href="./icon.png" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <BackgroundParticles />
             <div className={styles.projects}>
                 <FontAwesomeIcon
                     icon={faHome}
@@ -28,8 +27,10 @@ function Projects() {
                     onClick={goBackHome}
                 />
                 <h1 className={styles.title}>Side Projects</h1>
-                <Calculator />
-                <ConnectFour />
+                <div className={styles.projectsDiv}>
+                    <Calculator />
+                    <ConnectFour />
+                </div>
             </div>
         </div>
     )

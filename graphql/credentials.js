@@ -2,7 +2,7 @@ import graphql from "./client";
 
 
 const getCredentials = graphql.request(
-  `
+    `
       query Portfolio {
         academics(orderBy: createdAt_ASC) {
           id
@@ -25,7 +25,7 @@ const getCredentials = graphql.request(
           id
         }
 
-        projects {
+        projects(orderBy: index_ASC) {
           codeRepo
           company
           id

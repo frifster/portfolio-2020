@@ -126,7 +126,7 @@ export default function Home({ academics, businesses, projects, workExperiences 
             <div className={styles.userTitle}>Full Stack Developer</div>
             <div className={styles.userTitle}>Business Owner</div>
           </div>
-          <div className={styles.dowloadBtn}>
+          <div className={styles.downloadBtn}>
             <button>
               <a href="./AvilaEugene.pdf" download>
                 Download CV
@@ -137,11 +137,9 @@ export default function Home({ academics, businesses, projects, workExperiences 
             <FontAwesomeIcon icon={faCopyright} /> {year} All rights reserved.
           </footer>
         </section>
-        <div className={styles.animateDiv}>
           <AnimatePresence initial={false}>
             {VIEWS[view].component({ data: VIEWS[view].data || {} })}
           </AnimatePresence>
-        </div>
       </div>
     </div>
   );

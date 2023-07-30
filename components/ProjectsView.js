@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion'
+import {motion} from 'framer-motion'
 
-import { PROJECTS_VIEW } from '../constants/view'
-import { spring, variants } from '../animations/homeVariants'
+import {PROJECTS_VIEW} from '../constants/view'
+import {spring, variants} from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 
-function ProjectsView({ data }) {
+function ProjectsView({data}) {
     const router = useRouter();
 
     const goToSideProjects = () => router.push('/mini-projects');
@@ -24,48 +24,63 @@ function ProjectsView({ data }) {
             <div className={styles.projectsContainer}>
                 {
                     Object.values(data)
-                        .map(project => (
-                            <section className={styles.project} key={project.title + project.id}>
-                                <div className={styles.projectHeader}>
-                                    <h5>
-                                        {project.title}
-                                        {
-                                            project.codeRepo?.private
-                                                ? <span className={styles.repo}>Private Repo</span>
-                                                :
-                                                <span className={styles.repo}>
-                                                    <a href={project.codeRepo.githubLink} target='_blank' rel='noopener noreferrer'>Github</a>
-                                                </span>
-                                        }
-                                    </h5>
-                                    <h6>Role: {project.role}</h6>
-                                    <h6>Client: {project.company}</h6>
-                                </div>
-                                <div className={styles.techstacks}>
-                                    <div className={styles.projectImage}>
-                                        <a href={project.link || ''} target='_blank' rel='noopener noreferrer'>
-                                            <img
-                                                src={"./" + project.image}
-                                                draggable={false}
-                                                alt="Developer's Profile Picture"
-                                            />
-                                        </a>
-                                    </div>
-                                    <div className={styles.projectDesc}>
-                                        {
-                                            project.projectDesc.map(paragraph => <p>{paragraph}</p>)
-                                        }
-                                        <p>Techstacks used are the following:</p>
+                        .map(project => {
+                            const {
+                                codeRepo,
+                                title,
+                                id,
+                                role,
+                                company,
+                                link,
+                                projectDesc = [],
+                                techstack = []
+                            } = project || {};
+                            const {githubLink = "", private: codeRepoPrivacy = true} = codeRepo || {};
 
-                                        <div className={styles.techs}>
+                            return (
+                                <section className={styles.project} key={title + id}>
+                                    <div className={styles.projectHeader}>
+                                        <h5>
+                                            {title}
                                             {
-                                                project.techstack.map(tech => <span>{tech}</span>)
+                                                codeRepoPrivacy
+                                                    ? <span className={styles.repo}>Private Repo</span>
+                                                    :
+                                                    <span className={styles.repo}>
+                                                    <a href={githubLink} target='_blank'
+                                                       rel='noopener noreferrer'>Github</a>
+                                                </span>
                                             }
+                                        </h5>
+                                        <h6>Role: {role}</h6>
+                                        <h6>Client: {company}</h6>
+                                    </div>
+                                    <div className={styles.techstacks}>
+                                        <div className={styles.projectImage}>
+                                            <a href={link || ''} target='_blank' rel='noopener noreferrer'>
+                                                <img
+                                                    src={"./" + project.image}
+                                                    draggable={false}
+                                                    alt="Developer's Profile Picture"
+                                                />
+                                            </a>
+                                        </div>
+                                        <div className={styles.projectDesc}>
+                                            {
+                                                projectDesc.map(paragraph => <p>{paragraph}</p>)
+                                            }
+                                            <p>Techstacks used are the following:</p>
+
+                                            <div className={styles.techs}>
+                                                {
+                                                    techstack.map(tech => <span>{tech}</span>)
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
-                        ))
+                                </section>
+                            )
+                        })
                 }
             </div>
         </motion.div>

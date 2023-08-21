@@ -1,6 +1,12 @@
 const withLess = require("next-with-less");
+// @ts-check
 
-module.exports = withLess({
-    lessLoaderOptions: {
-    },
-});
+/**
+ * @type {import('next').NextConfig}
+ **/
+const nextConfig = withLess({
+    /* config options here */
+    lessLoaderOptions: {},
+})
+
+module.exports = nextConfig

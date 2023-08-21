@@ -5,7 +5,27 @@ import {spring, variants} from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
 import {useRouter} from 'next/router'
 
-function ProjectsView({data}) {
+
+type ProjectData = {
+    id: string,
+    title: string,
+    role: string,
+    company: string,
+    link: string,
+    image?: string,
+    codeRepo?: {
+        githubLink: string,
+        private: boolean
+    },
+    projectDesc?: string[],
+    techstack?: string[]
+}
+
+type ProjectsViewProps = {
+    data: ProjectData[]
+}
+
+function ProjectsView({data}: ProjectsViewProps) {
     const router = useRouter();
 
     const goToSideProjects = () => router.push('/mini-projects');

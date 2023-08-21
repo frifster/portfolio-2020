@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHome} from '@fortawesome/free-solid-svg-icons';
 import {useRouter} from 'next/router'
 import ConnectFour from '../../components/apps/ConnectFour';
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 function Projects() {
     const router = useRouter();
@@ -21,7 +22,7 @@ function Projects() {
             </Head>
             <div className={styles.projects}>
                 <FontAwesomeIcon
-                    icon={faHome}
+                    icon={faHome as IconProp}
                     className={styles.faIcons}
                     onClick={goBackHome}
                 />

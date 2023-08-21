@@ -5,6 +5,7 @@ import {faExternalLinkAlt} from "@fortawesome/free-solid-svg-icons";
 import {BUSINESS_VIEW} from '../constants/view'
 import {spring, variants} from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 type BusinessData = {
     id: string,
@@ -39,11 +40,11 @@ function BusinessView({data}: BusinessViewProps) {
                         .map(business => (
                             <section className={styles.experience} key={business.business + business.id}>
                                 <h5><a href={business.link} target='_blank'>{business.business} <FontAwesomeIcon
-                                    icon={faExternalLinkAlt}/> </a></h5>
+                                    icon={faExternalLinkAlt as IconProp}/> </a></h5>
                                 {
                                     business.grabFoodLink
                                         ? <h6><a href={business.grabFoodLink} target='_blank'><strong>Grab Food</strong>
-                                            <FontAwesomeIcon icon={faExternalLinkAlt}/></a></h6>
+                                            <FontAwesomeIcon icon={faExternalLinkAlt as IconProp}/></a></h6>
                                         : ""
                                 }
                                 <h6>{business.role}</h6>

@@ -12,6 +12,7 @@ const getCredentials = graphql.request(
           attendStart
           attendEnd
           honor
+          courseLink
         }
 
         businesses {

@@ -22,7 +22,8 @@ function AcadView(props) {
                         .map(acads => (
                             <section className={styles.experience} key={acads.school + acads.id}>
                                 <h5>
-                                    {acads.courseLink ? <a href={acads.courseLink}>{acads.course}</a> : acads.course}
+                                    {acads.courseLink ?
+                                        <a href={acads.courseLink} target="_blank">{acads.course}</a> : acads.course}
                                 </h5>
                                 <h6>{acads.school} - {acads.location}</h6>
                                 <h6>{acads.attendStart} - {acads.attendEnd}</h6>

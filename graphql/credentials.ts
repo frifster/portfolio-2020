@@ -46,7 +46,6 @@ const getCredentials = graphql.request(
           workLocation
           workTitle
           endYear
-          startYear
           id
         }
     }

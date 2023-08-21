@@ -34,7 +34,7 @@ import getCredentials from "../graphql/credentials";
 
 export async function getStaticProps() {
 
-    const {academics, businesses, projects, workExperiences} = await getCredentials;
+    const {academics, businesses, projects, workExperiences}: any = await getCredentials;
 
     return {
         props: {

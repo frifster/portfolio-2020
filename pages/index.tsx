@@ -31,6 +31,7 @@ import BusinessView from "../components/BusinessView";
 import ProjectsView from "../components/ProjectsView";
 
 import getCredentials from "../graphql/credentials";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export async function getStaticProps() {
 
@@ -141,7 +142,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                         </button>
                     </div>
                     <footer className={styles.footer}>
-                        <FontAwesomeIcon icon={faCopyright}/> {year} All rights reserved.
+                        <FontAwesomeIcon icon={faCopyright as IconProp}/> {year} All rights reserved.
                     </footer>
                 </section>
                 <AnimatePresence initial={false}>

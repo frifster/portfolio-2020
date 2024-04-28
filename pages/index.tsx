@@ -13,8 +13,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {AnimatePresence} from "framer-motion";
-
-import BackgroundParticles from "../components/BackgroundParticle";
 import {
     BUSINESS_VIEW,
     CONTACT_VIEW,
@@ -69,13 +67,12 @@ export default function Home({academics, businesses, projects, workExperiences})
     const now = new Date();
     const year = now.getFullYear();
 
-
     const title = VIEWS[view].title;
 
     const FontIcon = ({icon, currentView}) => {
         return (
             <FontAwesomeIcon
-                icon={icon}
+                icon={icon as IconProp}
                 className={currentView === view ? styles.faIconsActive : styles.faIcons}
                 onClick={() => setView(currentView)}
             />
@@ -107,7 +104,6 @@ export default function Home({academics, businesses, projects, workExperiences})
                 <link rel="icon" href="./icon.png"/>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
             </Head>
-            <BackgroundParticles/>
             <div className={styles.outerControls}>
                 <div className={styles.mainControl}>
                     <FontIcon icon={faHome} currentView={0}/>

@@ -79,7 +79,7 @@ function ProjectsView({data}: ProjectsViewProps) {
                                         <div className={styles.projectImage}>
                                             <a href={link || ''} target='_blank' rel='noopener noreferrer'>
                                                 <img
-                                                    src={"./" + project.image}
+                                                    src={project.image}
                                                     draggable={false}
                                                     alt="Developer's Profile Picture"
                                                 />

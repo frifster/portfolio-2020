@@ -132,7 +132,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                     </div>
                     <div className={styles.downloadBtn}>
                         <button>
-                            <a href="./AvilaEugeneNew.pdf" download>
+                            <a href="./AvilaEugeneResume.pdf" download>
                                 Download CV
                             </a>
                         </button>

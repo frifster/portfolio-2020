@@ -2,6 +2,7 @@ import {WORK_VIEW} from "../constants/view";
 import {motion} from "framer-motion";
 import {spring, variants} from "../animations/homeVariants";
 import styles from "../styles/Home.module.less";
+import ScrollableContainer from "./ScrollableContainer";
 
 type WorkData = {
     id: string;
@@ -30,7 +31,7 @@ function WorkView({data}: WorkViewProps) {
             className={styles.mainContent}
         >
             <h3>Work Experiences</h3>
-            <div className={styles.experienceContainer}>
+            <ScrollableContainer className={styles.experienceContainer}>
                 {Object.values(data).reverse()
                     .map((workExp) => (
                         <section
@@ -54,7 +55,7 @@ function WorkView({data}: WorkViewProps) {
                             )}
                         </section>
                     ))}
-            </div>
+            </ScrollableContainer>
         </motion.div>
     );
 }

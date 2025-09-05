@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import Head from "next/head";
+import {useRouter} from "next/router";
 
 import styles from "../styles/Home.module.less";
 import {
@@ -9,7 +10,9 @@ import {
     faPhoneAlt,
     faCopyright,
     faHandshake,
-    faTools
+    faTools,
+    faBars,
+    faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {AnimatePresence} from "framer-motion";
@@ -54,6 +57,8 @@ type View = {
 
 
 export default function Home({academics, businesses, projects, workExperiences}) {
+    const router = useRouter();
+    
     const VIEWS: View[] = [
         {name: PROFILE_VIEW, component: ProfileView, title: "Eugene's Portfolio"},
         {name: STUDY_VIEW, component: AcadView, title: "Academics", data: academics},
@@ -63,31 +68,94 @@ export default function Home({academics, businesses, projects, workExperiences})
         {name: CONTACT_VIEW, component: ContactView, title: "Reach me"},
     ];
 
+    // Get initial view from URL or default to 0
+    const getViewFromUrl = () => {
+        if (router.query.section) {
+            const sectionIndex = VIEWS.findIndex(v => v.name === router.query.section);
+            return sectionIndex >= 0 ? sectionIndex : 0;
+        }
+        return 0;
+    };
+
     const [view, setView] = useState(0);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const now = new Date();
     const year = now.getFullYear();
 
     const title = VIEWS[view].title;
 
-    const FontIcon = ({icon, currentView}) => {
+    // Update URL when view changes
+    const updateView = (newView: number) => {
+        const section = VIEWS[newView]?.name || PROFILE_VIEW;
+        router.push(`/?section=${section}`, undefined, { shallow: true });
+        setView(newView);
+        setMobileMenuOpen(false); // Close mobile menu when navigating
+    };
+
+    const FontIcon = ({icon, currentView, label}) => {
         return (
             <FontAwesomeIcon
                 icon={icon as IconProp}
+                role="button"
+                tabIndex={0}
+                aria-label={`Navigate to ${label}`}
+                aria-pressed={currentView === view}
                 className={currentView === view ? styles.faIconsActive : styles.faIcons}
-                onClick={() => setView(currentView)}
+                onClick={() => updateView(currentView)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        updateView(currentView);
+                    }
+                }}
+                style={{ outline: 'none' }}
             />
         );
     };
 
     const handleEvent = (e) => {
+        // Close mobile menu on Escape
+        if (e && e.code === "Escape" && mobileMenuOpen) {
+            setMobileMenuOpen(false);
+            return;
+        }
+
+        // Arrow key navigation
         if (e && e.code === "ArrowUp") {
-            setView(view === 0 ? VIEWS.length - 1 : view - 1);
+            e.preventDefault();
+            const newView = view === 0 ? VIEWS.length - 1 : view - 1;
+            updateView(newView);
         }
 
         if (e && e.code === "ArrowDown") {
-            setView(view === VIEWS.length - 1 ? 0 : view + 1);
+            e.preventDefault();
+            const newView = view === VIEWS.length - 1 ? 0 : view + 1;
+            updateView(newView);
+        }
+
+        // Tab key navigation
+        if (e && e.code === "Tab") {
+            if (e.shiftKey) {
+                // Shift+Tab - go to previous section
+                e.preventDefault();
+                const newView = view === 0 ? VIEWS.length - 1 : view - 1;
+                updateView(newView);
+            } else {
+                // Tab - go to next section
+                e.preventDefault();
+                const newView = view === VIEWS.length - 1 ? 0 : view + 1;
+                updateView(newView);
+            }
         }
     };
+
+    // Sync view with URL on router change
+    useEffect(() => {
+        if (router.isReady) {
+            const urlView = getViewFromUrl();
+            setView(urlView);
+        }
+    }, [router.isReady, router.query.section]);
 
     useEffect(() => {
         document.addEventListener("keydown", handleEvent, false);
@@ -95,7 +163,7 @@ export default function Home({academics, businesses, projects, workExperiences})
         return () => {
             document.removeEventListener("keydown", handleEvent, false);
         };
-    }, [view]);
+    }, [view, mobileMenuOpen]);
 
     return (
         <div className={styles.container}>
@@ -105,14 +173,133 @@ export default function Home({academics, businesses, projects, workExperiences})
                 <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
             </Head>
             <div className={styles.outerControls}>
-                <div className={styles.mainControl}>
-                    <FontIcon icon={faHome} currentView={0}/>
-                    <FontIcon icon={faGraduationCap} currentView={1}/>
-                    <FontIcon icon={faBriefcase} currentView={2}/>
-                    <FontIcon icon={faTools} currentView={3}/>
-                    <FontIcon icon={faHandshake} currentView={4}/>
-                    <FontIcon icon={faPhoneAlt} currentView={5}/>
+                {/* Desktop Navigation */}
+                <div className={`${styles.mainControl} ${styles.desktopNav}`} role="navigation" aria-label="Portfolio sections">
+                    <FontIcon icon={faHome} currentView={0} label="Profile"/>
+                    <FontIcon icon={faGraduationCap} currentView={1} label="Academics"/>
+                    <FontIcon icon={faBriefcase} currentView={2} label="Work Experience"/>
+                    <FontIcon icon={faTools} currentView={3} label="Projects"/>
+                    <FontIcon icon={faHandshake} currentView={4} label="Business"/>
+                    <FontIcon icon={faPhoneAlt} currentView={5} label="Contact"/>
                 </div>
+                
+                {/* Mobile Hamburger Button */}
+                <button 
+                    className={`${styles.hamburgerBtn} ${styles.mobileOnly}`}
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label="Toggle navigation menu"
+                    aria-expanded={mobileMenuOpen}
+                >
+                    <FontAwesomeIcon icon={mobileMenuOpen ? faTimes : faBars} />
+                </button>
+
+                {/* Mobile Navigation Overlay */}
+                {mobileMenuOpen && (
+                    <div 
+                        className={styles.mobileNav} 
+                        role="navigation" 
+                        aria-label="Mobile navigation"
+                        onClick={(e) => {
+                            // Close menu when clicking the overlay background
+                            if (e.target === e.currentTarget) {
+                                setMobileMenuOpen(false);
+                            }
+                        }}
+                    >
+                        <div className={styles.mobileNavContent}>
+                            <div 
+                                className={`${styles.mobileNavItem} ${view === 0 ? styles.active : ''}`} 
+                                onClick={() => updateView(0)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        updateView(0);
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faHome} />
+                                <span>Profile</span>
+                            </div>
+                            <div 
+                                className={`${styles.mobileNavItem} ${view === 1 ? styles.active : ''}`} 
+                                onClick={() => updateView(1)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        updateView(1);
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faGraduationCap} />
+                                <span>Academics</span>
+                            </div>
+                            <div 
+                                className={`${styles.mobileNavItem} ${view === 2 ? styles.active : ''}`} 
+                                onClick={() => updateView(2)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        updateView(2);
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faBriefcase} />
+                                <span>Work Experience</span>
+                            </div>
+                            <div 
+                                className={`${styles.mobileNavItem} ${view === 3 ? styles.active : ''}`} 
+                                onClick={() => updateView(3)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        updateView(3);
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faTools} />
+                                <span>Projects</span>
+                            </div>
+                            <div 
+                                className={`${styles.mobileNavItem} ${view === 4 ? styles.active : ''}`} 
+                                onClick={() => updateView(4)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        updateView(4);
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faHandshake} />
+                                <span>Business</span>
+                            </div>
+                            <div 
+                                className={`${styles.mobileNavItem} ${view === 5 ? styles.active : ''}`} 
+                                onClick={() => updateView(5)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        updateView(5);
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faPhoneAlt} />
+                                <span>Contact</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
             <div className={styles.innerBox}>
                 <section className={styles.rightContent}>
@@ -141,9 +328,16 @@ export default function Home({academics, businesses, projects, workExperiences})
                         <FontAwesomeIcon icon={faCopyright as IconProp}/> {year} All rights reserved.
                     </footer>
                 </section>
-                <AnimatePresence initial={false}>
-                    {VIEWS[view].component({data: VIEWS[view]?.data || {}})}
-                </AnimatePresence>
+                <main 
+                    role="main" 
+                    aria-label={`${VIEWS[view].title} section`}
+                    tabIndex={-1}
+                    id="main-content"
+                >
+                    <AnimatePresence initial={false}>
+                        {VIEWS[view].component({data: VIEWS[view]?.data || {}})}
+                    </AnimatePresence>
+                </main>
             </div>
         </div>
     );

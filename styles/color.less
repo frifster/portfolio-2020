@@ -1,8 +1,25 @@
-@main-color: #01241a;
-@accent-color: lighten(@main-color, 70);
-@sub-color: lighten(@main-color, 15);
-@text-color: #fff;
-@alt-text-color: rgb(209, 198, 198);
-@second-color: #24f49f;
-@box-color: rgba(0, 20, 50, 0.3);
-@dark-box-color: rgba(10, 10, 10, 0.3);
+// Steel gradient theme with animation
+@main-color: #1a1d29;           // Deep base for contrast
+@accent-color: #4ade80;         // Soft green for highlights  
+@sub-color: #2a2d3a;            // Muted card background
+@text-color: #ffffff;           // Pure white for maximum readability
+@alt-text-color: #cbd5e1;       // Better contrast for secondary text
+@second-color: #64b5f6;         // Gentle blue for secondary elements
+@box-color: rgba(42, 45, 58, 0.7);      // Slightly more opaque
+@dark-box-color: rgba(26, 29, 41, 0.85); // Better background contrast
+@muted-text: #94a3b8;           // Improved muted text contrast
+@border-color: #475569;         // More visible borders
+@hover-bg: #3f4753;             // Better hover contrast
+@gradient-primary: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+@gradient-accent: linear-gradient(135deg, #4ade80 0%, #64b5f6 100%);
+
+// Animated steel gradient background
+@gradient-bg: linear-gradient(
+  45deg,
+  #1a1d29 0%, 
+  #2c3e50 20%, 
+  #34495e 40%, 
+  #4a5568 60%, 
+  #2d3748 80%, 
+  #1a202c 100%
+);

@@ -22,7 +22,7 @@ function ContactView() {
                 </section>
                 <section className={styles.contact}>
                     <h5>Mobile Number</h5>
-                    <h6>09976099219</h6>
+                    <h6>0976 024 6305</h6>
                 </section>
                 <section className={styles.contact}>
                     <h5>Facebook</h5>

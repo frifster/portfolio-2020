@@ -4,6 +4,7 @@ import {PROJECTS_VIEW} from '../constants/view'
 import {spring, variants} from '../animations/homeVariants'
 import styles from '../styles/Home.module.less'
 import {useRouter} from 'next/router'
+import ScrollableContainer from './ScrollableContainer'
 
 
 type ProjectData = {
@@ -41,7 +42,7 @@ function ProjectsView({data}: ProjectsViewProps) {
             className={styles.mainContent}
         >
             <h3>Projects <span onClick={goToSideProjects}>Go to Side Projects Instead</span></h3>
-            <div className={styles.projectsContainer}>
+            <ScrollableContainer className={styles.projectsContainer}>
                 {
                     Object.values(data)
                         .map(project => {
@@ -102,7 +103,7 @@ function ProjectsView({data}: ProjectsViewProps) {
                             )
                         })
                 }
-            </div>
+            </ScrollableContainer>
         </motion.div>
     )
 }

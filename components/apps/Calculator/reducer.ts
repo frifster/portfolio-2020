@@ -1,13 +1,28 @@
 import ACTIONS from "./actions"
 
-export const initialState = {
+interface CalculatorState {
+    currentOperand: string;
+    previousOperand: string;
+    operation: string;
+    overwrite?: boolean;
+}
+
+interface CalculatorAction {
+    type: string;
+    payload?: {
+        digit?: string;
+        operation?: string;
+    };
+}
+
+export const initialState: CalculatorState = {
     currentOperand: '',
     previousOperand: '',
     operation: ''
 }
 
 
-function reducer(state, { type, payload }) {
+function reducer(state: CalculatorState, { type, payload }: CalculatorAction): CalculatorState {
     switch (type) {
 
         case ACTIONS.ADD_DIGIT:
@@ -19,14 +34,14 @@ function reducer(state, { type, payload }) {
                 }
             }
 
-            if (payload.digit === '0' && state.currentOperand === "0") return state;
-            if (payload.digit === '.' && state.currentOperand.includes('.')) {
+            if (payload?.digit === '0' && state.currentOperand === "0") return state;
+            if (payload?.digit === '.' && state.currentOperand.includes('.')) {
                 return state
             };
 
             return {
                 ...state,
-                currentOperand: `${state.currentOperand || ''}${payload.digit}`
+                currentOperand: `${state.currentOperand || ''}${payload?.digit || ''}`
             }
 
         case ACTIONS.CHOOSE_OPERATION:
@@ -34,14 +49,14 @@ function reducer(state, { type, payload }) {
             if (!state.currentOperand) {
                 return {
                     ...state,
-                    operation: payload.operation
+                    operation: payload?.operation || ''
                 }
             }
 
             if (!state.previousOperand) {
                 return {
                     ...state,
-                    operation: payload.operation,
+                    operation: payload?.operation || '',
                     previousOperand: state.currentOperand,
                     currentOperand: ''
                 }
@@ -50,7 +65,7 @@ function reducer(state, { type, payload }) {
             return {
                 ...state,
                 previousOperand: evaluate(state),
-                operation: payload.operation,
+                operation: payload?.operation || '',
                 currentOperand: ''
             }
 
@@ -96,12 +111,12 @@ function reducer(state, { type, payload }) {
     return state
 }
 
-function evaluate({ currentOperand, previousOperand, operation }) {
+function evaluate({ currentOperand, previousOperand, operation }: CalculatorState): string {
     const prev = parseFloat(previousOperand)
     const current = parseFloat(currentOperand)
     if (isNaN(prev) || isNaN(current)) return "";
 
-    let computation = "";
+    let computation: number = 0;
 
     switch (operation) {
         case "+":

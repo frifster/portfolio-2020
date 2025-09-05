@@ -3,7 +3,7 @@ const ACTIONS = {
     CHOOSE_OPERATION: 'chooseOperation',
     CLEAR: 'clear',
     DELETE_DIGIT: 'deleteDigit',
-    EVALUATE: 'evalute'
+    EVALUATE: 'evaluate'
 }
 
 

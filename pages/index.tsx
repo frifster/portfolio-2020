@@ -190,7 +190,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                     aria-label="Toggle navigation menu"
                     aria-expanded={mobileMenuOpen}
                 >
-                    <FontAwesomeIcon icon={mobileMenuOpen ? faTimes : faBars} />
+                    <FontAwesomeIcon icon={mobileMenuOpen ? faTimes as IconProp : faBars as IconProp} />
                 </button>
 
                 {/* Mobile Navigation Overlay */}
@@ -219,7 +219,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                                     }
                                 }}
                             >
-                                <FontAwesomeIcon icon={faHome} />
+                                <FontAwesomeIcon icon={faHome as IconProp} />
                                 <span>Profile</span>
                             </div>
                             <div 
@@ -234,7 +234,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                                     }
                                 }}
                             >
-                                <FontAwesomeIcon icon={faGraduationCap} />
+                                <FontAwesomeIcon icon={faGraduationCap as IconProp} />
                                 <span>Academics</span>
                             </div>
                             <div 
@@ -249,7 +249,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                                     }
                                 }}
                             >
-                                <FontAwesomeIcon icon={faBriefcase} />
+                                <FontAwesomeIcon icon={faBriefcase as IconProp} />
                                 <span>Work Experience</span>
                             </div>
                             <div 
@@ -264,7 +264,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                                     }
                                 }}
                             >
-                                <FontAwesomeIcon icon={faTools} />
+                                <FontAwesomeIcon icon={faTools as IconProp} />
                                 <span>Projects</span>
                             </div>
                             <div 
@@ -279,7 +279,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                                     }
                                 }}
                             >
-                                <FontAwesomeIcon icon={faHandshake} />
+                                <FontAwesomeIcon icon={faHandshake as IconProp} />
                                 <span>Business</span>
                             </div>
                             <div 
@@ -294,7 +294,7 @@ export default function Home({academics, businesses, projects, workExperiences})
                                     }
                                 }}
                             >
-                                <FontAwesomeIcon icon={faPhoneAlt} />
+                                <FontAwesomeIcon icon={faPhoneAlt as IconProp} />
                                 <span>Contact</span>
                             </div>
                         </div>

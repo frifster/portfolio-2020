@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { flushSync } from 'react-dom';
 import styles from '../../../styles/Projects.module.less';
 
 interface Card {

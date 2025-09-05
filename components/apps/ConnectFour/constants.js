@@ -18,6 +18,6 @@ export const INVALID_COLUMN = `Please enter number between 1 and ${BOARD_COLUMNS
 export const GAME_TIE = "Good game!, Game is a tie."
 export const GAME_MODES = [
     "Human vs Human",
-    "Human vs Computer [WIP] NOT WORKING!",
+    "Human vs Computer", 
     "Computer vs Computer"
 ]

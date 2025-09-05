@@ -19,9 +19,7 @@ const GameContainer = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-
-
-        if (gameMode & !winner && currentPlayer.playerType === COMPUTER) {
+        if (gameMode && !winner && currentPlayer.playerType === COMPUTER) {
             setTimeout(() => {
                 const columnIndex = Player.chooseRandomColumn(Game.getValidColumns(board))
                 dispatch(dropToken(columnIndex))
@@ -49,10 +47,10 @@ function ConnectFour() {
 
     return (
         <Provider store={store}>
-            <div className={styles.projectBox}>
+            <>
                 <h2>Connect Four</h2>
                 <GameContainer />
-            </div>
+            </>
         </Provider>
     )
 }

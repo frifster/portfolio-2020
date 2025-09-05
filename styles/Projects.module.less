@@ -1,101 +1,270 @@
-@import (css) url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import (css) url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "./color.less";
 @import "./media.less";
 @import "./mixins.less";
 
 .projectsContainer {
 	.container-defaults();
-	background-color: black;
+	background: @gradient-bg;
+	background-size: 200% 200%;
+	animation: steelShine 12s ease-in-out infinite;
 	overflow: hidden;
 
 	.projects {
-		padding: 1.5rem;
-
+		padding: 2rem;
 		display: grid;
-		grid-template-columns: repeat(18, 1fr);
 		grid-template-rows: auto 1fr;
+		gap: 2rem;
 		height: 100vh;
 
+		.header {
+			display: flex;
+			align-items: center;
+			gap: 2rem;
+
+			@media @mobile {
+				gap: 1rem;
+			}
+		}
+
 		.projectsDiv {
-			grid-column: 4 / span 12;
-			height: calc(100vh - 3rem);
-			overflow: auto;
-
 			display: grid;
-			grid-template-columns: repeat(18, 1fr);
-			grid-template-rows: auto 1fr;
-			gap: 1rem;
+			grid-template-columns: 200px 1fr;
+			gap: 1.5rem;
+			height: calc(100vh - 8rem);
+			overflow: hidden;
 
-			.remove-scrollbar();
+			@media @mobile {
+				grid-template-columns: 1fr;
+				grid-template-rows: auto 1fr;
+				height: calc(100vh - 6rem);
+			}
+		}
 
-			@media @992px {
-				grid-column: 1/-1;
+		.sideNav {
+			background: @sub-color;
+			border: 1px solid @border-color;
+			border-radius: 16px;
+			padding: 1rem;
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+
+			@media @mobile {
+				flex-direction: row;
+				padding: 1rem;
+				border-radius: 12px;
+				overflow-x: auto;
+			}
+		}
+
+		.navItem {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			padding: 0.75rem;
+			border-radius: 12px;
+			background: @box-color;
+			border: 1px solid @border-color;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			color: @text-color;
+			outline: none;
+
+			&:hover {
+				background: @hover-bg;
+				border-color: @accent-color;
+				color: @accent-color;
+				transform: translateX(4px);
+			}
+
+			&:focus {
+				outline: 2px solid @accent-color;
+				outline-offset: 2px;
+				color: @accent-color;
+				background: @hover-bg;
+			}
+
+			&.active {
+				background: @accent-color;
+				border-color: @accent-color;
+				color: @main-color;
+				transform: translateX(4px);
+				
+				&:hover {
+					background: lighten(@accent-color, 10%);
+					border-color: lighten(@accent-color, 10%);
+					color: @main-color;
+				}
+			}
+
+			.icon {
+				font-size: 1rem;
+				min-width: 16px;
+			}
+
+			.label {
+				font-weight: 500;
+				font-size: 0.875rem;
 			}
 
 			@media @mobile {
-				height: auto;
-				grid-template-columns: auto 1fr;
-				grid-template-rows: 1fr;
-				padding: 0.5rem;
-
-				.faIcons {
-					width: 10vw;
-					padding: 2vw;
-
-					display: grid;
-					align-items: center;
+				min-width: 150px;
+				transform: none !important;
+				
+				&:hover {
+					transform: none;
 				}
-
-				.title {
-					grid-column: span 1;
-					font-size: 1rem;
+				
+				&.active {
+					transform: none;
 				}
+			}
+		}
 
-				.projectBox {
-					grid-column: span 2;
+		.projectDisplay {
+			background: @sub-color;
+			border: 1px solid @border-color;
+			border-radius: 16px;
+			padding: 2rem;
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+			overflow-y: auto;
+			position: relative;
+
+			&::-webkit-scrollbar {
+				width: 6px;
+			}
+
+			&::-webkit-scrollbar-track {
+				background: rgba(74, 222, 128, 0.08);
+				border-radius: 3px;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background: @accent-color;
+				border-radius: 3px;
+				
+				&:hover {
+					background: lighten(@accent-color, 10%);
+				}
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: linear-gradient(90deg, @accent-color, lighten(@accent-color, 20%));
+				border-radius: 16px 16px 0 0;
+			}
+
+			@media @mobile {
+				padding: 1rem;
+				border-radius: 12px;
+
+				&::before {
+					border-radius: 12px 12px 0 0;
 				}
 			}
 		}
 
 		.faIcons {
-			width: 2vw;
+			cursor: pointer;
+			font-size: 32px;
+			padding: 12px;
+			border-radius: 12px;
+			transition: all 0.2s ease;
+			width: 56px;
+			height: 56px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: @sub-color;
+			border: 1px solid @border-color;
+			color: @text-color;
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+			&:hover {
+				color: @accent-color;
+				background: lighten(@sub-color, 5%);
+				transform: translateY(-1px);
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+			}
+
+			&:focus {
+				outline: 2px solid @accent-color;
+				outline-offset: 2px;
+				color: @accent-color;
+				background: lighten(@sub-color, 5%);
+			}
+
+			@media @mobile {
+				font-size: 24px;
+				width: 48px;
+				height: 48px;
+				padding: 8px;
+			}
 		}
 
 		.title {
-			text-align: center;
-			margin-top: 1vmax;
-			grid-column: span 17;
+			color: @text-color;
+			font-size: 2rem;
+			font-weight: 600;
+			margin: 0;
+			align-self: center;
+
+			@media @mobile {
+				font-size: 1.5rem;
+				text-align: center;
+			}
 		}
 	}
 
 	.projectBox {
-		.relative-box();
-		height: 100%;
-		padding: 1rem 2rem;
-		border-radius: 2rem;
+		background: @sub-color;
+		border: 1px solid @border-color;
+		border-radius: 16px;
+		padding: 2rem;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
 
-		grid-column: span 18;
-		margin: 1rem;
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+			border-color: @accent-color;
+		}
 
-		display: grid;
-
-		grid-template-columns: auto 1fr;
-		align-content: start;
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 3px;
+			background: linear-gradient(90deg, @accent-color, lighten(@accent-color, 20%));
+		}
 
 		@media @mobile {
-			grid-template-columns: 1fr;
-			grid-column: span 1;
-
-			padding: 0.5rem 1rem;
+			padding: 1rem;
+			border-radius: 12px;
 		}
 	}
 
 	h2 {
-		grid-column: span 2;
+		color: @text-color;
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin: 0 0 1rem 0;
+		position: relative;
+		z-index: 1;
 
 		@media @mobile {
-			font-size: 0.8rem;
-			grid-column: span 1;
+			font-size: 1.2rem;
 		}
 	}
 
@@ -185,23 +354,887 @@
 	}
 
 	.projectDesc {
-		padding: 0 2rem;
+		position: relative;
+		z-index: 1;
 
 		p {
-			justify-self: start;
-			text-align: left;
+			color: @alt-text-color;
+			font-size: 14px;
+			line-height: 1.6;
+			margin: 0 0 1rem 0;
 
 			em {
-				color: lighten(@second-color, 20);
-				letter-spacing: 0.12ch;
-				font-size: 0.8em;
+				color: @accent-color;
+				font-weight: 500;
+				font-style: normal;
 			}
 		}
 	}
 }
 
+@keyframes steelShine {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+// Tic Tac Toe Styles
+.ticTacGameContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	margin-top: 1rem;
+}
+
+.scoreBoard {
+	display: flex;
+	gap: 2rem;
+	background: @box-color;
+	padding: 1rem;
+	border-radius: 12px;
+	border: 1px solid @border-color;
+
+	@media @mobile {
+		gap: 1rem;
+		padding: 0.8rem;
+	}
+}
+
+.scoreItem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.scoreLabel {
+	font-size: 0.9rem;
+	color: @alt-text-color;
+	font-weight: 500;
+}
+
+.scoreValue {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: @accent-color;
+}
+
+.gameStatus {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: @text-color;
+	text-align: center;
+}
+
+.ticTacBoard {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 4px;
+	background: @border-color;
+	padding: 4px;
+	border-radius: 8px;
+}
+
+.ticTacSquare {
+	width: 80px;
+	height: 80px;
+	background: @sub-color;
+	border: none;
+	border-radius: 4px;
+	font-size: 2rem;
+	font-weight: bold;
+	color: @accent-color;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	outline: none;
+
+	&:hover:not(:disabled) {
+		background: @hover-bg;
+		transform: scale(1.05);
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+
+	@media @mobile {
+		width: 60px;
+		height: 60px;
+		font-size: 1.5rem;
+	}
+}
+
+.gameControls {
+	display: flex;
+	gap: 1rem;
+
+	@media @mobile {
+		flex-direction: column;
+		width: 100%;
+	}
+}
+
+.gameButton {
+	background: @accent-color;
+	color: @main-color;
+	border: none;
+	padding: 0.8rem 1.5rem;
+	border-radius: 8px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	outline: none;
+
+	&:hover {
+		background: lighten(@accent-color, 10%);
+		transform: translateY(-1px);
+	}
+
+	&:focus {
+		outline: 2px solid @accent-color;
+		outline-offset: 2px;
+	}
+
+	@media @mobile {
+		width: 100%;
+	}
+}
+
+// Color Generator Styles
+.colorGeneratorContainer {
+	margin-top: 1rem;
+}
+
+.colorControls {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	background: @box-color;
+	padding: 1.5rem;
+	border-radius: 12px;
+	border: 1px solid @border-color;
+	margin-bottom: 2rem;
+}
+
+.colorInputGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.colorLabel {
+	font-weight: 500;
+	color: @text-color;
+	font-size: 0.95rem;
+}
+
+.colorInputWrapper {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+
+	@media @mobile {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+}
+
+.colorInput {
+	width: 60px;
+	height: 40px;
+	border: 1px solid @border-color;
+	border-radius: 8px;
+	cursor: pointer;
+	background: none;
+
+	&::-webkit-color-swatch {
+		border: none;
+		border-radius: 6px;
+	}
+}
+
+.colorTextInput {
+	background: @main-color;
+	border: 1px solid @border-color;
+	border-radius: 8px;
+	padding: 0.5rem 1rem;
+	color: @text-color;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.9rem;
+	outline: none;
+	transition: border-color 0.2s ease;
+
+	&:focus {
+		border-color: @accent-color;
+	}
+
+	@media @mobile {
+		width: 100%;
+	}
+}
+
+.colorSelect {
+	background: @main-color;
+	border: 1px solid @border-color;
+	border-radius: 8px;
+	padding: 0.5rem 1rem;
+	color: @text-color;
+	outline: none;
+	cursor: pointer;
+	transition: border-color 0.2s ease;
+
+	&:focus {
+		border-color: @accent-color;
+	}
+
+	option {
+		background: @main-color;
+		color: @text-color;
+	}
+}
+
+.colorPalette {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 1rem;
+	margin-bottom: 1rem;
+
+	@media @mobile {
+		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	}
+}
+
+.colorSwatch {
+	aspect-ratio: 1;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+	position: relative;
+	border: 2px solid rgba(255, 255, 255, 0.1);
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+	}
+}
+
+.colorValue {
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: 600;
+	font-size: 0.9rem;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.copiedMessage {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	animation: fadeInOut 2s ease;
+}
+
+.colorInfo {
+	text-align: center;
+	color: @alt-text-color;
+	font-size: 0.9rem;
+	margin-top: 1rem;
+}
+
+@keyframes fadeInOut {
+	0%, 100% { opacity: 0; }
+	50% { opacity: 1; }
+}
+
+// Memory Game Styles
+.memoryGameSetup {
+	text-align: center;
+	margin: 2rem 0;
+
+	h3 {
+		color: @text-color;
+		font-size: 1.2rem;
+		margin-bottom: 1.5rem;
+	}
+}
+
+.difficultyButtons {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	max-width: 300px;
+	margin: 0 auto;
+
+	@media @mobile {
+		max-width: 100%;
+	}
+}
+
+.difficultyButton {
+	background: @accent-color;
+	color: @main-color;
+	border: none;
+	padding: 1rem;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	outline: none;
+
+	&:hover {
+		background: lighten(@accent-color, 10%);
+		transform: translateY(-1px);
+	}
+
+	.difficultyName {
+		font-weight: 600;
+		font-size: 1rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.difficultyDetails {
+		font-size: 0.85rem;
+		opacity: 0.9;
+	}
+}
+
+.memoryGameHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+	flex-wrap: wrap;
+	gap: 1rem;
+
+	@media @mobile {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}
+
+.gameStats {
+	display: flex;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+
+	@media @mobile {
+		justify-content: center;
+	}
+}
+
+.statItem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+
+	.statLabel {
+		font-size: 0.8rem;
+		color: @alt-text-color;
+		font-weight: 500;
+	}
+
+	.statValue {
+		font-size: 1.2rem;
+		font-weight: 600;
+		color: @accent-color;
+		font-family: 'JetBrains Mono', monospace;
+
+		&.timeWarning {
+			color: #ef4444;
+			animation: pulse 1s infinite;
+		}
+	}
+}
+
+@keyframes pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.6; }
+}
+
+.gameResult {
+	text-align: center;
+	background: @box-color;
+	border: 1px solid @border-color;
+	border-radius: 12px;
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
+
+	.winMessage {
+		color: @accent-color;
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
+
+	.loseMessage {
+		color: #f97316;
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
+}
+
+.memoryGameBoard {
+	display: grid;
+	gap: 0.75rem;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 1rem;
+
+	@media @mobile {
+		gap: 0.5rem;
+		padding: 0.5rem;
+	}
+}
+
+.memoryCard {
+	aspect-ratio: 1;
+	background: @box-color;
+	border: 2px solid @border-color;
+	border-radius: 8px;
+	cursor: pointer;
+	position: relative;
+	transition: all 0.3s ease;
+	transform-style: preserve-3d;
+	min-height: 60px;
+
+	&:hover:not(.flipped) {
+		transform: scale(1.05);
+		border-color: @accent-color;
+	}
+
+	&.flipped {
+		transform: rotateY(180deg);
+	}
+
+	&.matched {
+		opacity: 0.6;
+		cursor: default;
+		border-color: @accent-color;
+	}
+
+	.cardFront,
+	.cardBack {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.5rem;
+		font-weight: bold;
+		backface-visibility: hidden;
+		border-radius: 6px;
+	}
+
+	.cardFront {
+		background: @sub-color;
+		color: @alt-text-color;
+		font-size: 1.8rem;
+	}
+
+	.cardBack {
+		background: @accent-color;
+		color: @main-color;
+		transform: rotateY(180deg);
+		font-size: 2rem;
+	}
+
+	@media @mobile {
+		min-height: 50px;
+
+		.cardFront,
+		.cardBack {
+			font-size: 1.2rem;
+		}
+
+		.cardBack {
+			font-size: 1.5rem;
+		}
+	}
+}
+
+// Password Generator Styles
+.passwordGeneratorContainer {
+	margin-top: 1rem;
+}
+
+.passwordOutput {
+	background: @box-color;
+	border: 1px solid @border-color;
+	border-radius: 12px;
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.generatedPassword {
+	display: flex;
+	gap: 0.75rem;
+	margin-bottom: 1rem;
+	align-items: center;
+}
+
+.passwordInput {
+	flex: 1;
+	background: @main-color;
+	border: 1px solid @border-color;
+	border-radius: 8px;
+	padding: 0.75rem;
+	color: @text-color;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 1rem;
+	outline: none;
+	transition: border-color 0.2s ease;
+
+	&:focus {
+		border-color: @accent-color;
+	}
+
+	@media @mobile {
+		font-size: 0.9rem;
+	}
+}
+
+.copyButton {
+	background: @accent-color;
+	color: @main-color;
+	border: none;
+	padding: 0.75rem;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 1rem;
+	min-width: 44px;
+	outline: none;
+
+	&:hover:not(:disabled) {
+		background: lighten(@accent-color, 10%);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.passwordStrength {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	.strengthLabel {
+		color: @alt-text-color;
+		font-weight: 500;
+	}
+
+	.strengthValue {
+		font-weight: 600;
+		font-size: 1rem;
+	}
+}
+
+.passwordOptions {
+	background: @box-color;
+	border: 1px solid @border-color;
+	border-radius: 12px;
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.optionGroup {
+	margin-bottom: 1.5rem;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.groupTitle {
+	color: @text-color;
+	font-size: 1rem;
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+}
+
+.lengthControl {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+
+	.optionLabel {
+		color: @text-color;
+		font-weight: 500;
+	}
+}
+
+.lengthSlider {
+	width: 100%;
+	height: 6px;
+	background: @border-color;
+	border-radius: 3px;
+	outline: none;
+	appearance: none;
+
+	&::-webkit-slider-thumb {
+		appearance: none;
+		width: 20px;
+		height: 20px;
+		background: @accent-color;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
+	&::-moz-range-thumb {
+		width: 20px;
+		height: 20px;
+		background: @accent-color;
+		border-radius: 50%;
+		cursor: pointer;
+		border: none;
+	}
+}
+
+.lengthLabels {
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.8rem;
+	color: @alt-text-color;
+}
+
+.checkboxOption {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-bottom: 0.75rem;
+	cursor: pointer;
+
+	input[type="checkbox"] {
+		width: 18px;
+		height: 18px;
+		accent-color: @accent-color;
+	}
+
+	.checkboxLabel {
+		color: @text-color;
+		font-weight: 500;
+		flex: 1;
+	}
+}
+
+.passwordActions {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.passwordHistory {
+	background: @box-color;
+	border: 1px solid @border-color;
+	border-radius: 12px;
+	padding: 1.5rem;
+
+	.historyTitle {
+		color: @text-color;
+		font-size: 1rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
+
+	.historyList {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.historyItem {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		background: @main-color;
+		border: 1px solid @border-color;
+		border-radius: 8px;
+		padding: 0.5rem 0.75rem;
+
+		.historyPassword {
+			flex: 1;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.9rem;
+			color: @alt-text-color;
+			word-break: break-all;
+		}
+
+		.historyCopyButton {
+			background: @sub-color;
+			color: @text-color;
+			border: 1px solid @border-color;
+			border-radius: 4px;
+			padding: 0.25rem 0.5rem;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			font-size: 0.8rem;
+			outline: none;
+
+			&:hover {
+				background: @hover-bg;
+				border-color: @accent-color;
+			}
+		}
+	}
+}
+
+// Connect Four Enhanced Styles
 .connectFour {
-	min-height: 700px;
+	min-height: 500px;
+	position: relative;
+	z-index: 1;
+
+	.gameModeSelection {
+		text-align: center;
+		margin-bottom: 2rem;
+
+		.selectionTitle {
+			color: @text-color;
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+		}
+
+		.gameModeButtons {
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+			max-width: 300px;
+			margin: 0 auto;
+
+			@media @mobile {
+				max-width: 100%;
+			}
+		}
+
+		.gameModeButton {
+			background: @accent-color;
+			color: @main-color;
+			border: none;
+			padding: 1rem 1.5rem;
+			border-radius: 8px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			outline: none;
+
+			&:hover {
+				background: lighten(@accent-color, 10%);
+				transform: translateY(-1px);
+			}
+
+			&:focus {
+				outline: 2px solid @accent-color;
+				outline-offset: 2px;
+			}
+		}
+	}
+
+	.connectFourControls {
+		margin-bottom: 1.5rem;
+
+		.gameStatus {
+			background: @box-color;
+			border: 1px solid @border-color;
+			border-radius: 12px;
+			padding: 1rem;
+			margin-bottom: 1rem;
+
+			.currentGameMode {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-bottom: 0.75rem;
+
+				.modeLabel {
+					color: @alt-text-color;
+					font-weight: 500;
+				}
+
+				.modeValue {
+					color: @accent-color;
+					font-weight: 600;
+				}
+			}
+
+			.currentPlayerStatus {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+
+				.playerLabel {
+					color: @alt-text-color;
+					font-weight: 500;
+				}
+
+				.playerToken {
+					font-weight: bold;
+					padding: 0.25rem 0.5rem;
+					border-radius: 4px;
+					font-family: 'JetBrains Mono', monospace;
+				}
+
+				.playerX {
+					background: rgba(239, 68, 68, 0.2);
+					color: #ef4444;
+				}
+
+				.playerO {
+					background: rgba(59, 130, 246, 0.2);
+					color: #3b82f6;
+				}
+
+				.playerType {
+					color: @alt-text-color;
+					font-size: 0.9rem;
+				}
+			}
+
+			.winnerStatus {
+				color: @accent-color;
+				font-weight: 600;
+				font-size: 1.1rem;
+				text-align: center;
+
+				.winnerToken {
+					font-weight: bold;
+					padding: 0.25rem 0.5rem;
+					border-radius: 4px;
+					font-family: 'JetBrains Mono', monospace;
+					margin-left: 0.5rem;
+				}
+			}
+		}
+
+		.gameControls {
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+
+			@media @mobile {
+				flex-direction: column;
+			}
+		}
+	}
 
 	.gameModes {
 		button {

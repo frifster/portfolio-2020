@@ -33,7 +33,7 @@ import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export async function getStaticProps() {
 
-    const {academics, businesses, projects, workExperiences}: any = await getCredentials;
+    const {academics, businesses, projects, workExperiences}: any = await getCredentials();
 
     return {
         props: {
